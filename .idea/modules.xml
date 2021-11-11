@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/BNTA_backend_project.iml" filepath="$PROJECT_DIR$/.idea/BNTA_backend_project.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dndspellapi/dndspellapi.iml" filepath="$PROJECT_DIR$/dndspellapi/dndspellapi.iml" />
     </modules>
   </component>
 </project>
