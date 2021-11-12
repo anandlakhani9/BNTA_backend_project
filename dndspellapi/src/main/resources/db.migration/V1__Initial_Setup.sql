@@ -12,8 +12,8 @@ CREATE TABLE spells (id BIGSERIAL PRIMARY KEY,
     higher_level TEXT
     );
 
-CREATE TABLE dndclasses (id SERIAL PRIMARY KEY NOT NULL, class_name TEXT);
-CREATE TABLE dndraces (id SERIAL PRIMARY KEY NOT NULL, race_name TEXT);
+CREATE TABLE dndclasses (id SERIAL PRIMARY KEY NOT NULL, class_name TEXT , class_name TEXT, class_description TEXT);
+CREATE TABLE dndraces (id SERIAL PRIMARY KEY NOT NULL, race_name TEXT, race_description TEXT);
 
 CREATE TABLE characters (id BIGSERIAL NOT NULL PRIMARY KEY,
     class_id INT NOT NULL REFERENCES dndclasses(id),
