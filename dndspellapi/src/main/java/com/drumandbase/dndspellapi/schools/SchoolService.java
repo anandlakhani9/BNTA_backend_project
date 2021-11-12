@@ -1,5 +1,6 @@
 package com.drumandbase.dndspellapi.schools;
 
+import com.drumandbase.dndspellapi.exceptions.ResourceNotFound;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -37,9 +38,28 @@ public class SchoolService {
         // check school exists
         //
 //        schoolDAO.updateSchool(id, name, description);
+        School school = getSchool(id)
+                .orElseThrow(() ->
+                        new ResourceNotFound("School with this id:" + id + " doesn't exist")
+                );
+        if (name != null && name.length() > 0 && !school.getSchool_name().equals(name)) {
+            school.setSchool_name(name);
+        }
+        if (description != null && description.length() > 0 && !school.getSchool_description().equals(description)) {
+            school.setSchool_description(description);
+
+        }
+
+        schoolDAO.updateSchool(school.getId(), school.getSchool_name(), school.getSchool_description());
+
     }
 
+
     public void deleteSchool(int id) {
+        School school = getSchool(id)
+                .orElseThrow(() ->
+                        new ResourceNotFound("School with this id:" + id + " doesn't exist")
+                );
         schoolDAO.deleteSchool(id);
     }
 }

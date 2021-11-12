@@ -10,6 +10,6 @@ public interface SchoolDAO {
     Optional<School> selectSchoolByName(String name);
     int insertSchool(School school);
     int deleteSchool(int id);
-    int updateSchool(School school);
+    int updateSchool(int id, String name, String description);
 
 }
