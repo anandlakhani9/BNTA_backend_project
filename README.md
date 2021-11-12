@@ -6,6 +6,6 @@ Thursday Afternoon - Set up School Package and all of the School, SchoolControll
 
 Friday Morning - Finished School Package and tested functionality within ThunderClient - Oliver, Rose, Anand, Sabi (Mob Code
 
-##Our API
-###Schools
+## Our API
+### Schools
 Get all schools: api/v1/schools
