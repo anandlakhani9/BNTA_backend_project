@@ -8,7 +8,7 @@ CREATE TABLE spells (id BIGSERIAL PRIMARY KEY,
     components TEXT,
     duration TEXT,
     ritual BOOLEAN,
-    descr TEXT,
+    description TEXT,
     higher_level TEXT
     );
 
