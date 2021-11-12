@@ -2,10 +2,12 @@ package com.drumandbase.dndspellapi.schools;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
 
+@Repository("postgres")
 public class SchoolDataAccessService implements SchoolDAO{
 
     private JdbcTemplate jdbcTemplate;
@@ -37,7 +39,7 @@ public class SchoolDataAccessService implements SchoolDAO{
     public Optional<School> selectSchoolByName(String name) {
 
         String sql = """
-                    SELECT * FROM schools WHERE name = ?; 
+                    SELECT * FROM schools WHERE school_name = ?; 
                 """;
 
         return jdbcTemplate.query(sql, new SchoolRowMapper(), name).stream().findFirst();
@@ -46,10 +48,10 @@ public class SchoolDataAccessService implements SchoolDAO{
     @Override
     public int insertSchool(School school) {
         String sql = """
-                    INSERT INTO schools (id, name, description) VALUES (?,?,?);
+                    INSERT INTO schools (school_name, school_description) VALUES (?,?);
                 """;
 
-        return jdbcTemplate.update(sql, school.getId(), school.getSchool_name(), school.getSchool_description());
+        return jdbcTemplate.update(sql, school.getSchool_name(), school.getSchool_description());
     }
 
     @Override
@@ -65,10 +67,10 @@ public class SchoolDataAccessService implements SchoolDAO{
     public int updateSchool(int id, String name, String description) {
         String sql = """
                 UPDATE schools 
-                SET name = ?, description = ?
+                SET school_name = ?, school_description = ?
                 WHERE id = ?;
                 """;
 
-        return jdbcTemplate.update(sql, id, name, description);
+        return jdbcTemplate.update(sql, name, description, id);
     }
 }

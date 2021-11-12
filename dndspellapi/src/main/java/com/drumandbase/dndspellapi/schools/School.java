@@ -7,10 +7,10 @@ public class School {
     private String school_name;
     private String school_description;
 
-    public School(String school_name, String school_description) {
-        this.school_name = school_name;
-        this.school_description = school_description;
-    }
+//    public School(String school_name, String school_description) {
+//        this.school_name = school_name;
+//        this.school_description = school_description;
+//    }
 
     public School(int id, String school_name, String school_description) {
         this.id = id;

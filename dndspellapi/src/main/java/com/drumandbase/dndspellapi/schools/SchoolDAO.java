@@ -3,6 +3,7 @@ package com.drumandbase.dndspellapi.schools;
 import java.util.List;
 import java.util.Optional;
 
+
 public interface SchoolDAO {
 
     List<School> selectAllSchools();

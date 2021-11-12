@@ -2,6 +2,7 @@ package com.drumandbase.dndspellapi.schools;
 
 import com.drumandbase.dndspellapi.exceptions.ResourceNotFound;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,7 +15,7 @@ public class SchoolService {
 
 
     @Autowired
-    public SchoolService(SchoolDAO schoolDAO) {
+    public SchoolService(@Qualifier("postgres") SchoolDAO schoolDAO) {
         this.schoolDAO = schoolDAO;
     }
 

@@ -22,12 +22,13 @@ public class SchoolController {
         return schoolService.getSchools();
     }
 
+    // Make sure to document why we did this -- to stop ambiguous coding
     @GetMapping("{id}")
     public Optional<School> getSchoolById(@PathVariable("id") int id){
         return schoolService.getSchool(id);
     }
 
-    @GetMapping("{name}")
+    @GetMapping("name={name}")
     public Optional<School> getSchoolByName(@PathVariable("name") String name){
         return schoolService.getSchool(name);
     }

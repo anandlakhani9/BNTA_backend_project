@@ -11,8 +11,8 @@ public class SchoolRowMapper implements RowMapper<School> {
     public School mapRow(ResultSet rs, int rowNum) throws SQLException {
         School school = new School(
                 rs.getInt("id"),
-                rs.getString("name"),
-                rs.getString("description")
+                rs.getString("school_name"),
+                rs.getString("school_description")
         );
 
         return school;
