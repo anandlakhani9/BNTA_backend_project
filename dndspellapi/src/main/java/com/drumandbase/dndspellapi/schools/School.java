@@ -1,6 +1,11 @@
 package com.drumandbase.dndspellapi.schools;
 
 import java.util.Objects;
+/* What is this class: this is a POJO for the different schools of magic that a spell can have.
+Each school has an ID, a name and a description for DnD.
+Created by Oliver, Sabi, Rose and Anand.
+*
+* */
 
 public class School {
     private int id;

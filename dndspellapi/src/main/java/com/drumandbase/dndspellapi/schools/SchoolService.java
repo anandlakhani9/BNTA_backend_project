@@ -7,7 +7,10 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-
+/* This is all the business logic, where data validation happens for methods like inserting, updating and deleting a school.
+* Created by Oliver, Sabi, Rose and Anand.
+*
+* */
 @Service
 public class SchoolService {
 

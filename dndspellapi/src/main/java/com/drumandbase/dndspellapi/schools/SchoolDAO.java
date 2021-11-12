@@ -2,7 +2,9 @@ package com.drumandbase.dndspellapi.schools;
 
 import java.util.List;
 import java.util.Optional;
-
+/* Created by Oliver, Sabi, Rose and Anand.
+*
+* */
 
 public interface SchoolDAO {
 

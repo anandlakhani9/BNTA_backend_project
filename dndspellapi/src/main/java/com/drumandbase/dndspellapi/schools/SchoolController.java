@@ -5,7 +5,11 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
-
+/* This is the School controller class, which has the rest methods for the schools table
+* Created by Oliver, Sabi, Rose and Anand.
+* NOTES: for the method GET, if you want to filter by ID use the url: api/v1/schools/id where ID is a number
+* Whereas to filter by name you use url: api/v1/schools/name=x, where x is a school name.
+* */
 @RestController
 @RequestMapping(path = "api/v1/schools")
 public class SchoolController {

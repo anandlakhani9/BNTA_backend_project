@@ -7,6 +7,9 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 import java.util.Optional;
 
+/* This class interacts with the database, so we can query the schools database
+* Created by Oliver, Sabi, Rose and Anand.
+* */
 @Repository("postgres")
 public class SchoolDataAccessService implements SchoolDAO{
 

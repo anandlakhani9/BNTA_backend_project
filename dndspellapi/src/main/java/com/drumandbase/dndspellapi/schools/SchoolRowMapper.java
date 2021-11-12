@@ -4,7 +4,9 @@ import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
+/* This class classifies the columns of a given row
+* Created by Oliver, Sabi, Rose and Anand.
+* */
 public class SchoolRowMapper implements RowMapper<School> {
 
     @Override
