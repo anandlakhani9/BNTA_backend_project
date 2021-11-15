@@ -39,6 +39,8 @@ class SchoolDataAccessServiceTest {
         jdbcTemplate.execute("INSERT INTO schools (school_name, school_description) VALUES ('Evocation', 'jre;iogfj');");
     }
 
+
+
     //@Sql({"classpath:test.sql"})
     @Test
     void selectAllSchools(){
@@ -52,37 +54,116 @@ class SchoolDataAccessServiceTest {
     }
 
     @Test
-    void selectSchoolById() {
+    void itShouldSelectSchoolById() {
         //given
         //when
         Optional<School> actual = underTest.selectSchoolById(1);
         System.out.println(actual);
-        Optional<School> expected = Optional.of(new School(1, "Evocation", "jre;iogfj"));
+        Optional<School> expected = Optional.of(new School(1,
+                "Evocation", "jre;iogfj"));
         //then
         assertThat(actual).isEqualTo(expected);
     }
 
     @Test
-    void selectSchoolByName() {
+    void itShouldSelectSchoolByName() {
         //when
         Optional<School> actual = underTest.selectSchoolByName("Evocation");
-        Optional<School> expected = Optional.of(new School(1, "Evocation", "jre;iogfj"));
+        Optional<School> expected = Optional.of(new School(1,
+                "Evocation", "jre;iogfj"));
         //then
         assertThat(actual).isEqualTo(expected);
     }
 
     @Test
-    @Disabled
-    void insertSchool() {
+    void itShouldInsertSchool() {
+        // when
+        int actual = underTest.insertSchool("Oliver", "udhfliuaehf");
+        List<School> actualDB = underTest.selectAllSchools();
+        List<School> expectedDB = List.of(
+                new School(1,
+                "Evocation", "jre;iogfj"),
+                new School(2,
+                        "Oliver", "udhfliuaehf"));
+        // then
+        assertThat(actual).isEqualTo(1);
+        assertThat(actualDB).isEqualTo(expectedDB);
+    }
+
+    //delete both schools here
+    @Test
+    void itShouldDeleteASchool() {
+        // when
+        System.out.println(underTest.selectAllSchools());
+        int actualOne = underTest.deleteSchool(1);
+        System.out.println(underTest.selectAllSchools());
+        List<School> actualDB = underTest.selectAllSchools();
+        // then
+        assertThat(actualOne).isEqualTo(1);
+        assertThat(actualDB).isEqualTo(List.of());
     }
 
     @Test
-    @Disabled
-    void deleteSchool() {
+    void deleteSchoolWhereIdDoesNotExist(){
+        // given
+        int actual = underTest.deleteSchool(4);
+        // when
+        assertThat(actual).isEqualTo(0);
     }
 
     @Test
-    @Disabled
-    void updateSchool() {
+    void selectSchoolWhereIdDoesNotExist(){
+        // given
+        Optional<School> actual = underTest.selectSchoolById(4);
+        // when
+        assertThat(actual).isEqualTo(Optional.empty());
     }
+    @Test
+    void selectAllSchoolsWhereTableIsEmpty(){
+        //given
+        underTest.deleteSchool(1);
+        // when
+        List<School> actual = underTest.selectAllSchools();
+        // then
+        assertThat(actual).isEqualTo(List.of());
+    }
+
+    @Test
+    // normally would expect ID to be 2 here
+    // but because of the insert test it is 3
+    // each test method seems to be running their test, but resetting the database to what it was before the test
+    // so the serial in the db is being tricked into thinking 2 has been used
+    void itShouldInsertSchoolAfterAllHaveBeenDeletedWithCorrectID() {
+        //given
+        System.out.println(underTest.selectAllSchools());
+        underTest.deleteSchool(1);
+        // when
+        int actual = underTest.insertSchool("Oliver", "udhfliuaehf");
+        List<School> actualDB = underTest.selectAllSchools();
+        List<School> expectedDB = List.of(new School(3,
+                "Oliver", "udhfliuaehf"));
+
+        // then
+        assertThat(actual).isEqualTo(1);
+        assertThat(actualDB).isEqualTo(expectedDB);
+    }
+
+    @Test
+    void itShouldUpdateSchool() {
+        //when
+        int actual = underTest.updateSchool(1,
+                "Anand",
+                "fghdkjafhd;hf");
+        int expected = 1;
+        List<School> actualDB = List.of(new School(1,
+                "Anand",
+                "fghdkjafhd;hf" ));
+        List<School> expectedDB = underTest.selectAllSchools();
+        //then
+        assertThat(actual).isEqualTo(expected);
+        assertThat(actualDB).isEqualTo(expectedDB);
+    }
+
+
+
 }

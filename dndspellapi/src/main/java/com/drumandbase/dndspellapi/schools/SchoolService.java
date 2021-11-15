@@ -34,8 +34,8 @@ public class SchoolService {
         return schoolDAO.selectSchoolByName(name);
     }
 
-    public void addSchool(School school) {
-        schoolDAO.insertSchool(school);
+    public void addSchool(String name, String description) {
+        schoolDAO.insertSchool(name, description);
     }
 
     public void updateSchool(int id, String name, String description) {

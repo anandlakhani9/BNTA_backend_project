@@ -11,7 +11,7 @@ public interface SchoolDAO {
     List<School> selectAllSchools();
     Optional<School> selectSchoolById(int id);
     Optional<School> selectSchoolByName(String name);
-    int insertSchool(School school);
+    int insertSchool(String name, String description);
     int deleteSchool(int id);
     int updateSchool(int id, String name, String description);
 

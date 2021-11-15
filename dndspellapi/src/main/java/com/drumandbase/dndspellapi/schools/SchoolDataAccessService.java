@@ -49,12 +49,12 @@ public class SchoolDataAccessService implements SchoolDAO{
     }
 
     @Override
-    public int insertSchool(School school) {
+    public int insertSchool(String name, String description) {
         String sql = """
                     INSERT INTO schools (school_name, school_description) VALUES (?,?);
                 """;
 
-        return jdbcTemplate.update(sql, school.getSchool_name(), school.getSchool_description());
+        return jdbcTemplate.update(sql, name, description);
     }
 
     @Override
