@@ -12,7 +12,7 @@ Friday Afternoon - Attempted unit testing, to be continued... / created document
 
 Monday Morning - Unit Test for SchoolsDataAccess Service Completed(pair coded - Anand/Oliver). DndClasses(Rose) and DndRaces(Sabi) also completed.
 
-Mornday Afternoon - Null pointer exceptions added  mob coded - Rose, Sabi, Anand and Oliver) as well as the Spells(pair coded - Anande/Oliver) and Character classes (pair coded - Anande/Oliver).
+Mornday Afternoon - Null pointer exceptions added (mob coded - Rose, Sabi, Anand and Oliver) as well as the Spells(pair coded - Anande/Oliver) and Character classes (pair coded - Sabi/Rose).
 
 
 ## Our API
