@@ -1,8 +1,10 @@
 package com.drumandbase.dndspellapi.schools;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
@@ -10,7 +12,7 @@ import java.util.Optional;
 /* This class interacts with the database, so we can query the schools database
 * Created by Oliver, Sabi, Rose and Anand.
 * */
-@Repository("postgres")
+@Repository("school")
 public class SchoolDataAccessService implements SchoolDAO{
 
     private JdbcTemplate jdbcTemplate;

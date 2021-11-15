@@ -18,7 +18,7 @@ public class SchoolService {
 
 
     @Autowired
-    public SchoolService(@Qualifier("postgres") SchoolDAO schoolDAO) {
+    public SchoolService(@Qualifier("school") SchoolDAO schoolDAO) {
         this.schoolDAO = schoolDAO;
     }
 
