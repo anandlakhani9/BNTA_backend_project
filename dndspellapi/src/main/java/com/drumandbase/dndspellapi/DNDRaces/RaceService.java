@@ -28,8 +28,14 @@ public class RaceService {
     }
 
     public void addRace(String name, String description) {
-        raceDAO.insertRace(name, description);
+
+        if (name != null && name.trim().length() > 0 && description != null && description.trim().length() >0) {
+            raceDAO.insertRace(name, description);
+        } else {
+            throw new NullPointerException("Must have a valid name and description");
+        }
     }
+
 
     public void updateRace(int id, String name, String description) {
         // check school exists

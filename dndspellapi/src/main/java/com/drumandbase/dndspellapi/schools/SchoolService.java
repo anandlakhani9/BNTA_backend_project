@@ -35,7 +35,12 @@ public class SchoolService {
     }
 
     public void addSchool(String name, String description) {
-        schoolDAO.insertSchool(name, description);
+
+        if (name != null && name.trim().length() > 0 && description != null && description.trim().length() >0) {
+            schoolDAO.insertSchool(name, description);
+        } else {
+            throw new NullPointerException("Must have a valid name and description");
+        }
     }
 
     public void updateSchool(int id, String name, String description) {
