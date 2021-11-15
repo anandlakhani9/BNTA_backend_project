@@ -40,6 +40,9 @@ public class DnDClassService {
                         new ResourceNotFound("School with this id: "+ id + " doesn't exist")
                 );
         if (name != null && name.length() > 0 && !dnDClass.getClass_name().equals(description)) {
+            dnDClass.setClass_name(name);
+        }
+        if (description != null && description.length() > 0 && !dnDClass.getClass_description().equals(description)) {
             dnDClass.setClass_description(description);
         }
 
