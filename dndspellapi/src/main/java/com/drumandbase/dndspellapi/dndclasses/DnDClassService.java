@@ -31,8 +31,14 @@ public class DnDClassService {
     }
 
     public void addDnDClass(String name, String description) {
-        dnDClassDAO.insertDnDClass(name, description);
+        if (name != null && name.trim().length() > 0 && description != null && description.trim().length() >0) {
+            dnDClassDAO.insertDnDClass(name, description);
+        } else {
+            throw new NullPointerException("Must have a valid name and description");
+        }
     }
+
+
 
     public void updateDnDClass(int id, String name, String description) {
         DnDClass dnDClass = getDnDClass(id)
