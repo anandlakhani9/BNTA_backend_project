@@ -39,7 +39,7 @@ public class SchoolController {
 
     @PostMapping
     public void addSchool(@RequestBody School school){
-        schoolService.addSchool(school);
+        schoolService.addSchool(school.getSchool_name(), school.getSchool_description());
     }
 
     @PutMapping("{id}")
