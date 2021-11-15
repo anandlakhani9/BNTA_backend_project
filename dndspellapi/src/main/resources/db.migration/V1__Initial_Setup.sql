@@ -8,14 +8,14 @@ CREATE TABLE spells (id BIGSERIAL PRIMARY KEY,
     components TEXT,
     duration TEXT,
     ritual BOOLEAN,
-    descr TEXT,
+    description TEXT,
     higher_level TEXT
     );
 
-CREATE TABLE dndclasses (id SERIAL PRIMARY KEY NOT NULL, class_name TEXT);
-CREATE TABLE dndraces (id SERIAL PRIMARY KEY NOT NULL, race_name TEXT);
+CREATE TABLE dndclasses (id SERIAL PRIMARY KEY, class_name TEXT, class_description TEXT);
+CREATE TABLE dndraces (id SERIAL PRIMARY KEY, race_name TEXT, race_description TEXT);
 
-CREATE TABLE characters (id BIGSERIAL NOT NULL PRIMARY KEY,
+CREATE TABLE characters (id BIGSERIAL PRIMARY KEY ,
     class_id INT NOT NULL REFERENCES dndclasses(id),
     race_id INT NOT NULL REFERENCES dndraces(id),
     character_level INT NOT NULL,
@@ -39,10 +39,10 @@ CREATE TABLE characters (id BIGSERIAL NOT NULL PRIMARY KEY,
     max_spell_slot_6 INT NOT NULL,
     max_spell_slot_7 INT NOT NULL,
     max_spell_slot_8 INT NOT NULL,
-    max_spell_slot_9 INT NOT NULL,
+    max_spell_slot_9 INT NOT NULL
     );
 
-CREATE TABLE character_spells (id BIGSERIAL NOT NULL,
+CREATE TABLE character_spells (id BIGSERIAL PRIMARY KEY,
     character_id BIGINT NOT NULL REFERENCES characters(id),
     spell_id BIGINT NOT NULL REFERENCES spells(id)
     );

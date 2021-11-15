@@ -10,7 +10,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="dndspellapi" target="17" />
+      <module name="dndspellapi" target="16" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
