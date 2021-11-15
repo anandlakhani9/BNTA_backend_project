@@ -31,8 +31,8 @@ public class DnDClassController {
     public Optional<DnDClass> getDnDClassesByName(@PathVariable("name") String name) {
         return dndClassService.getDnDClass(name);
     }
-    @PostMapping public void addDnDClass(@RequestBody String name, String description) {
-        dndClassService.addDnDClass(name, description);
+    @PostMapping public void addDnDClass(@RequestBody DnDClass dnDClass) {
+        dndClassService.addDnDClass(dnDClass.getClass_name(), dnDClass.getClass_description());
     }
     @PutMapping("{id}")
     public void updateDnDClass(@PathVariable("id") int id,
