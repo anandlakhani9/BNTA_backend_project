@@ -14,6 +14,8 @@ public class CharacterDataAccessServer  implements CharacterDAO{
     public CharacterDataAccessServer(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate =jdbcTemplate;
     }
+
+    // Remember to do inner join
     @Override
     public List<Character> selectAllCharacters() {
         return null;

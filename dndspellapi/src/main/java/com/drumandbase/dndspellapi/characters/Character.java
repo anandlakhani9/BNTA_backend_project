@@ -38,10 +38,7 @@ public class Character {
         this.class_id = class_id;
         this.character_level = character_level;
         this.name = name;
-        cs.initSpellSlots();
-
-//
-
+        cs.putSpellSlots(this);
     }
 
     public Long getId() {
