@@ -29,10 +29,11 @@ public class Character {
     private int max_spell_slot_7;
     private int max_spell_slot_8;
     private int max_spell_slot_9;
+    private int max_ivocations_known;
 
 //    private CharacterService cs;
 
-    public Character(Long id, int race_id, int class_id, int character_level, String name, int max_cantrips_known, int max_spells_known, int spell_slot_1, int spell_slot_2, int spell_slot_3, int spell_slot_4, int spell_slot_5, int spell_slot_6, int spell_slot_7, int spell_slot_8, int spell_slot_9, int max_spell_slot_1, int max_spell_slot_2, int max_spell_slot_3, int max_spell_slot_4, int max_spell_slot_5, int max_spell_slot_6, int max_spell_slot_7, int max_spell_slot_8, int max_spell_slot_9) {
+    public Character(Long id, int race_id, int class_id, int character_level, String name, int max_cantrips_known, int max_spells_known, int spell_slot_1, int spell_slot_2, int spell_slot_3, int spell_slot_4, int spell_slot_5, int spell_slot_6, int spell_slot_7, int spell_slot_8, int spell_slot_9, int max_spell_slot_1, int max_spell_slot_2, int max_spell_slot_3, int max_spell_slot_4, int max_spell_slot_5, int max_spell_slot_6, int max_spell_slot_7, int max_spell_slot_8, int max_spell_slot_9, int max_ivocations_known) {
         this.id = id;
         this.race_id = race_id;
         this.class_id = class_id;
@@ -58,6 +59,7 @@ public class Character {
         this.max_spell_slot_7 = max_spell_slot_7;
         this.max_spell_slot_8 = max_spell_slot_8;
         this.max_spell_slot_9 = max_spell_slot_9;
+        this.max_ivocations_known = max_ivocations_known;
     }
 
 //    public Character(Long id, int race_id, int class_id, int character_level, String name, int max_spell_slot_1) {
@@ -270,6 +272,27 @@ public class Character {
         this.max_spell_slot_9 = max_spell_slot_9;
     }
 
+    public int getMax_ivocations_known() {
+        return max_ivocations_known;
+    }
+
+    public void setMax_ivocations_known(int max_ivocation_known) {
+        this.max_ivocations_known = max_ivocation_known;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Character character = (Character) o;
+        return race_id == character.race_id && class_id == character.class_id && character_level == character.character_level && max_cantrips_known == character.max_cantrips_known && max_spells_known == character.max_spells_known && spell_slot_1 == character.spell_slot_1 && spell_slot_2 == character.spell_slot_2 && spell_slot_3 == character.spell_slot_3 && spell_slot_4 == character.spell_slot_4 && spell_slot_5 == character.spell_slot_5 && spell_slot_6 == character.spell_slot_6 && spell_slot_7 == character.spell_slot_7 && spell_slot_8 == character.spell_slot_8 && spell_slot_9 == character.spell_slot_9 && max_spell_slot_1 == character.max_spell_slot_1 && max_spell_slot_2 == character.max_spell_slot_2 && max_spell_slot_3 == character.max_spell_slot_3 && max_spell_slot_4 == character.max_spell_slot_4 && max_spell_slot_5 == character.max_spell_slot_5 && max_spell_slot_6 == character.max_spell_slot_6 && max_spell_slot_7 == character.max_spell_slot_7 && max_spell_slot_8 == character.max_spell_slot_8 && max_spell_slot_9 == character.max_spell_slot_9 && max_ivocations_known == character.max_ivocations_known && Objects.equals(id, character.id) && Objects.equals(name, character.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, race_id, class_id, character_level, name, max_cantrips_known, max_spells_known, spell_slot_1, spell_slot_2, spell_slot_3, spell_slot_4, spell_slot_5, spell_slot_6, spell_slot_7, spell_slot_8, spell_slot_9, max_spell_slot_1, max_spell_slot_2, max_spell_slot_3, max_spell_slot_4, max_spell_slot_5, max_spell_slot_6, max_spell_slot_7, max_spell_slot_8, max_spell_slot_9, max_ivocations_known);
+    }
+
     @Override
     public String toString() {
         return "Character{" +
@@ -298,19 +321,8 @@ public class Character {
                 ", max_spell_slot_7=" + max_spell_slot_7 +
                 ", max_spell_slot_8=" + max_spell_slot_8 +
                 ", max_spell_slot_9=" + max_spell_slot_9 +
+                ", max_ivocations_known=" + max_ivocations_known +
                 '}';
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Character character = (Character) o;
-        return race_id == character.race_id && class_id == character.class_id && character_level == character.character_level && max_cantrips_known == character.max_cantrips_known && max_spells_known == character.max_spells_known && spell_slot_1 == character.spell_slot_1 && spell_slot_2 == character.spell_slot_2 && spell_slot_3 == character.spell_slot_3 && spell_slot_4 == character.spell_slot_4 && spell_slot_5 == character.spell_slot_5 && spell_slot_6 == character.spell_slot_6 && spell_slot_7 == character.spell_slot_7 && spell_slot_8 == character.spell_slot_8 && spell_slot_9 == character.spell_slot_9 && max_spell_slot_1 == character.max_spell_slot_1 && max_spell_slot_2 == character.max_spell_slot_2 && max_spell_slot_3 == character.max_spell_slot_3 && max_spell_slot_4 == character.max_spell_slot_4 && max_spell_slot_5 == character.max_spell_slot_5 && max_spell_slot_6 == character.max_spell_slot_6 && max_spell_slot_7 == character.max_spell_slot_7 && max_spell_slot_8 == character.max_spell_slot_8 && max_spell_slot_9 == character.max_spell_slot_9 && Objects.equals(id, character.id) && Objects.equals(name, character.name);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, race_id, class_id, character_level, name, max_cantrips_known, max_spells_known, spell_slot_1, spell_slot_2, spell_slot_3, spell_slot_4, spell_slot_5, spell_slot_6, spell_slot_7, spell_slot_8, spell_slot_9, max_spell_slot_1, max_spell_slot_2, max_spell_slot_3, max_spell_slot_4, max_spell_slot_5, max_spell_slot_6, max_spell_slot_7, max_spell_slot_8, max_spell_slot_9);
-    }
 }

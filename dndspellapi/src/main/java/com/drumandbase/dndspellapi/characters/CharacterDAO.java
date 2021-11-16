@@ -30,6 +30,7 @@ public interface CharacterDAO {
     void setMax_spell_slot_7(int max_spell_slot_7);
     void setMax_spell_slot_8(int max_spell_slot_8);
     void setMax_spell_slot_9(int max_spell_slot_9);
+    void setMax_ivocations_known(int max_ivocation_known);
 
     //void setMspellsips_known(Integer spellSlot);
 }

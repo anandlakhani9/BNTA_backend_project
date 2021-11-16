@@ -47,7 +47,9 @@ CREATE TABLE characters (id BIGSERIAL PRIMARY KEY ,
     max_spell_slot_6 INT NOT NULL,
     max_spell_slot_7 INT NOT NULL,
     max_spell_slot_8 INT NOT NULL,
-    max_spell_slot_9 INT NOT NULL
+    max_spell_slot_9 INT NOT NULL,
+    max_ivocations_known INT NOT NULL
+
     );
 
 CREATE TABLE character_spells (id BIGSERIAL PRIMARY KEY,

@@ -34,7 +34,8 @@ public class CharacterRowMapper implements RowMapper<Character> {
                 rs.getInt("max_spell_slot_6"),
                 rs.getInt("max_spell_slot_7"),
                 rs.getInt("max_spell_slot_8"),
-                rs.getInt("max_spell_slot_9")
+                rs.getInt("max_spell_slot_9"),
+                rs.getInt("max_ivocations_known")
         );
         return character;
 
