@@ -39,15 +39,49 @@ public class SpellController {
     }
 
     @PutMapping("{id}")
-    /*public void updateSpell(@PathVariable("id") int id,
-                             @RequestParam(required = false) String name,
-                             @RequestParam(required = false) String description){
-        // handle nulls in logic
-        spelllService.updateSpell(id, name, description);
-    }*/
+    public void updateSpell(@PathVariable("id") long id,
+                            @RequestParam(required = false) String spellName,
+                            @RequestParam(required = false) Integer spellLevel,
+                            @RequestParam(required = false) Integer schoolId,
+                            @RequestParam(required = false) String range,
+                            @RequestParam(required = false) String components,
+                            @RequestParam(required = false) String duration,
+                            @RequestParam(required = false) String description,
+                            @RequestParam(required = false) String higherLevel,
+                            @RequestParam(required = false) Boolean ritual,
+                            @RequestParam(required = false) Boolean canSorcerer,
+                            @RequestParam(required = false) Boolean canWizard,
+                            @RequestParam(required = false) Boolean canWarlock,
+                            @RequestParam(required = false) Boolean canBard,
+                            @RequestParam(required = false) Boolean canPaladin,
+                            @RequestParam(required = false) Boolean canDruid,
+                            @RequestParam(required = false) Boolean canCleric,
+                            @RequestParam(required = false) Boolean canRanger
+                            ) {
+                                // handle nulls in logic
+                                spellService.updateSpell(
+                                        id,
+                                        spellName,
+                                        spellLevel,
+                                        schoolId,
+                                        range,
+                                        components,
+                                        duration,
+                                        description,
+                                        higherLevel,
+                                        ritual,
+                                        canSorcerer,
+                                        canWizard,
+                                        canWarlock,
+                                        canBard,
+                                        canPaladin,
+                                        canDruid,
+                                        canCleric,
+                                        canRanger);
+                            }
 
     @DeleteMapping("{id}")
-    public void deleteSpell(@PathVariable("id") int id){
+    public void deleteSpell(@PathVariable("id") long id){
         spellService.deleteSpell(id);
     }
 

@@ -1,6 +1,7 @@
 package com.drumandbase.dndspellapi.spells;
 
 import com.drumandbase.dndspellapi.exceptions.ResourceNotFound;
+import com.drumandbase.dndspellapi.schools.School;
 import com.drumandbase.dndspellapi.spells.Spell;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -25,7 +26,7 @@ public class SpellService {
         return spellDAO.selectAllSpells();
     }
 
-    public Optional<Spell> getSpell(int id) {
+    public Optional<Spell> getSpell(long id) {
         return spellDAO.selectSpellByID(id);
     }
 
@@ -131,11 +132,49 @@ public class SpellService {
 
     }*/
 
-    public void deleteSpell(int id) {
+    public void deleteSpell(long id) {
         Spell spell = getSpell(id)
                 .orElseThrow(() ->
                         new ResourceNotFound("spell with this id:" + id + " doesn't exist")
                 );
         spellDAO.deleteSpell(id);
+    }
+
+    public void updateSpell(long id, String spellName, Integer spellLevel, Integer schoolId, String range, String components, String duration,
+                            String description, String higherLevel, Boolean ritual, Boolean canSorcerer, Boolean canWizard,
+                            Boolean canWarlock, Boolean canBard, Boolean canPaladin, Boolean canDruid,
+                            Boolean canCleric, Boolean canRanger) {
+//
+//        spellDAO.updatespell(id, name, description);
+//        Spell spell = getSpell(id)
+//                .orElseThrow(() ->
+//                        new ResourceNotFound("spell with this id:" + id + " doesn't exist")
+//                );
+//        if (name != null && name.length() > 0 && !spell.getSpell_name().equals(name)) {
+//            spell.setSpell_name(name);
+//        }
+//        if (description != null && description.length() > 0 && !spell.getSpell_description().equals(description)) {
+//            spell.setSpell_description(description);
+//
+//        }
+        spellDAO.updateSpell(
+                id,
+                spellName,
+                spellLevel,
+                schoolId,
+                range,
+                components,
+                duration,
+                description,
+                higherLevel,
+                ritual,
+                canSorcerer,
+                canWizard,
+                canWarlock,
+                canBard,
+                canPaladin,
+                canDruid,
+                canCleric,
+                canRanger);
     }
 }

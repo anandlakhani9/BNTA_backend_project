@@ -6,8 +6,8 @@ public class Spell {
 
     private long id;
     private String spellName;
-    private int spellLevel;
-    private int schoolId;
+    private Integer spellLevel;
+    private Integer schoolId;
     private String range;
     private String components;
     private String duration;
@@ -23,7 +23,7 @@ public class Spell {
     private Boolean canCleric;
     private Boolean canRanger;
 
-    public Spell(long id, String spellName, int spellLevel, int schoolId, String range, String components, String duration,String description, String higherLevel, Boolean ritual, Boolean canSorcerer, Boolean canWizard, Boolean canWarlock, Boolean canBard, Boolean canPaladin, Boolean canDruid, Boolean canCleric, Boolean canRanger) {
+    public Spell(long id, String spellName, Integer spellLevel, Integer schoolId, String range, String components, String duration,String description, String higherLevel, Boolean ritual, Boolean canSorcerer, Boolean canWizard, Boolean canWarlock, Boolean canBard, Boolean canPaladin, Boolean canDruid, Boolean canCleric, Boolean canRanger) {
         this.id = id;
         this.spellName = spellName;
         this.spellLevel = spellLevel;
@@ -140,20 +140,20 @@ public class Spell {
         this.spellName = spellName;
     }
 
-    public int getSchoolID() {
+    public Integer getSchoolID() {
         return schoolId;
     }
 
-    public void setSchoolID(int schoolId) {
+    public void setSchoolID(Integer schoolId) {
         this.schoolId = schoolId;
     }
 
 
-    public int getSpellLevel() {
+    public Integer getSpellLevel() {
         return spellLevel;
     }
 
-    public void setSpellLevel(int spellLevel) {
+    public void setSpellLevel(Integer spellLevel) {
         this.spellLevel = spellLevel;
     }
 
@@ -199,7 +199,7 @@ public class Spell {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, spellName, spellLevel, range, components, duration, description, higherLevel, ritual, canSorcerer, canWizard, canWarlock, canBard, canPaladin, canDruid, canCleric, canRanger);
+        return Objects.hash(id, spellName, spellLevel, schoolId, range, components, duration, description, higherLevel, ritual, canSorcerer, canWizard, canWarlock, canBard, canPaladin, canDruid, canCleric, canRanger);
     }
 
     @Override

@@ -1,6 +1,5 @@
 package com.drumandbase.dndspellapi.spells;
 
-import com.drumandbase.dndspellapi.schools.SchoolRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -33,6 +32,52 @@ public class SpellDataAccessService implements SpellDAO{
     @Override
     public Optional<Spell> selectSpellByName(String name) {
         return Optional.empty();
+    }
+
+    @Override
+    public int updateSpell(long id, String spellName, Integer spellLevel,Integer schoolID, String range, String components, String duration, String description, String higherLevel, Boolean ritual, Boolean canSorcerer, Boolean canWizard, Boolean canWarlock, Boolean canBard, Boolean canPaladin, Boolean canDruid, Boolean canCleric, Boolean canRanger) {
+        String sql ="""
+                UPDATE spells 
+                SET 
+                spell_name = ?, 
+                spell_level = ?, 
+                school_id = ?, 
+                range = ?, 
+                components = ?,
+                duration = ?, 
+                description = ?, 
+                higherLevel = ?, 
+                ritual = ?, 
+                canSorcerer = ?,
+                canWizard = ?,
+                canWarlock = ?,
+                canBard = ?,
+                canPaladin = ?,  
+                canDruid = ?,
+                canCleric = ?, 
+                canRanger = ?,
+                WHERE id = ?;
+                """;
+
+        return jdbcTemplate.update(sql,
+                spellName,
+                spellLevel,
+                schoolID,
+                range,
+                components,
+                duration,
+                description,
+                higherLevel,
+                ritual,
+                canSorcerer,
+                canWizard,
+                canWarlock,
+                canBard,
+                canPaladin,
+                canDruid,
+                canCleric,
+                canRanger,
+                id);
     }
 
     @Override
@@ -82,8 +127,60 @@ public class SpellDataAccessService implements SpellDAO{
 
     @Override
     public int deleteSpell(long id) {
-        return 0;
-    }
+        String sql = """
+                    DELETE FROM spells WHERE id = ?; 
+                """;
 
+        return jdbcTemplate.update(sql, id);
+    };
 
 }
+//    @Override
+//    public int updateSpell(String spellName, int spellLevel, int spellId, String range, String components, String duration,
+//                            String description, String higherLevel, Boolean ritual, Boolean canSorcerer, Boolean canWizard,
+//                            Boolean canWarlock, Boolean canBard, Boolean canPaladin, Boolean canDruid,
+//                            Boolean canCleric, Boolean canRanger, long id) {
+//        String sql ="""
+//                UPDATE spells
+//                SET school_name = ?,
+//                school_level = ?,
+//                spell_id = ?,
+//                range = ?,
+//                components = ?,
+//                duration = ?,
+//                description = ?,
+//                higherLevel = ?,
+//                ritual = ?,
+//                canSorcerer = ?,
+//                canWizard = ?,
+//                canCleric = ?,
+//                canBard = ?,
+//                canPaladin = ?,
+//                canDruid = ?,
+//                canCleric = ?,
+//                canRanger = ?,
+//                WHERE id = ?;
+//                """;
+//
+//        return jdbcTemplate.update(sql,
+//                spellName,
+//                spellLevel,
+//                spellId,
+//                range,
+//                components,
+//                duration,
+//                description,
+//                higherLevel,
+//                ritual,
+//                canSorcerer,
+//                canWizard,
+//                canWarlock,
+//                canBard,
+//                canPaladin,
+//                canDruid,
+//                canCleric,
+//                canRanger,
+//                id);
+//    }
+//
+//}
