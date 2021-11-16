@@ -24,23 +24,24 @@ public class CharacterController {
 
     @GetMapping("{id}")
     public Optional<Character> getCharacterById(@PathVariable("id") Long id) {
-        return characterService;
+        return characterService.getCharacter(id);
     }
 
     @PutMapping
     public void addCharacter(@RequestBody Character character) {
-        characterService.addCharacter(/*TODO:*/);
+        characterService.addCharacter(character);
     }
 
     @PutMapping("{id}")
     public void addCharacter(@PathVariable("id") Long id,
                              @RequestParam(required = false) /*TODO*/) {
-        characterService.addCharacter(/*TODO:*/);
+        characterService.updateCharacter(/*TODO:*/);
     }
 
     @DeleteMapping("{id}")
-    public void deleteCharacter(@PathVariable("id") int id){
+    public void deleteCharacter(@PathVariable("id") Long id){
         characterService.deleteCharacter(id);
     }
+
 
 }

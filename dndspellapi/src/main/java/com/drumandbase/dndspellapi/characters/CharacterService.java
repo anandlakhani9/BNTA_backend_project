@@ -23,14 +23,14 @@ public class CharacterService{
     }
 
     public Optional<Character> getCharacter(Long id) {
-        return characterDAO.selectCharacterById();
+        return characterDAO.selectCharacterById(id);
     }
 
-    public void addCharacter(/*TODO*/) {
-        if (/*TODO: Null exception capture*/) {
-            characterDAO.insertCharacter();
+    public void addCharacter(Character character) {
+        if (character.getName() != null && character.getName().trim().length() > 0 && character.getRace_id() > 0 && character.getClass_id()> 0 && character.getCharacter_level() > 0) {
+            characterDAO.insertCharacter(character);
         } else {
-            throw new NullPointerException("Must contain valid variables")
+            throw new NullPointerException("Must contain valid variables");
         }
     }
 
@@ -50,5 +50,10 @@ public class CharacterService{
                 new ResourceNotFound("Character with this id: " + id + " does not exist")
         );
         characterDAO.deleteCharacter(id);
+    }
+
+    // use Character set methods for spell slots
+    public void initSpellSlots(int character_level, int class_id){
+
     }
 }

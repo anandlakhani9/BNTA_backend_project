@@ -6,8 +6,8 @@ import java.util.Optional;
 public interface CharacterDAO {
 
     List<Character> selectAllCharacters();
-    Optional<Character> selectCharacterById();
-    int insertCharacter(/* TODO*/);
-    int deleteCharacter(/* TODO*/);
+    Optional<Character> selectCharacterById(Long id);
+    int insertCharacter(Character character);
+    int deleteCharacter(Long id);
     int updateCharacter(/* TODO*/);
 }
