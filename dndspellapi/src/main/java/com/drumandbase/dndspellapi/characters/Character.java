@@ -30,16 +30,45 @@ public class Character {
     private int max_spell_slot_8;
     private int max_spell_slot_9;
 
-    private CharacterService cs;
+//    private CharacterService cs;
 
-    public Character(Long id, int race_id, int class_id, int character_level, String name) {
+    public Character(Long id, int race_id, int class_id, int character_level, String name, int max_cantrips_known, int max_spells_known, int spell_slot_1, int spell_slot_2, int spell_slot_3, int spell_slot_4, int spell_slot_5, int spell_slot_6, int spell_slot_7, int spell_slot_8, int spell_slot_9, int max_spell_slot_1, int max_spell_slot_2, int max_spell_slot_3, int max_spell_slot_4, int max_spell_slot_5, int max_spell_slot_6, int max_spell_slot_7, int max_spell_slot_8, int max_spell_slot_9) {
         this.id = id;
         this.race_id = race_id;
         this.class_id = class_id;
         this.character_level = character_level;
         this.name = name;
-        cs.putSpellSlots(this);
+        this.max_cantrips_known = max_cantrips_known;
+        this.max_spells_known = max_spells_known;
+        this.spell_slot_1 = spell_slot_1;
+        this.spell_slot_2 = spell_slot_2;
+        this.spell_slot_3 = spell_slot_3;
+        this.spell_slot_4 = spell_slot_4;
+        this.spell_slot_5 = spell_slot_5;
+        this.spell_slot_6 = spell_slot_6;
+        this.spell_slot_7 = spell_slot_7;
+        this.spell_slot_8 = spell_slot_8;
+        this.spell_slot_9 = spell_slot_9;
+        this.max_spell_slot_1 = max_spell_slot_1;
+        this.max_spell_slot_2 = max_spell_slot_2;
+        this.max_spell_slot_3 = max_spell_slot_3;
+        this.max_spell_slot_4 = max_spell_slot_4;
+        this.max_spell_slot_5 = max_spell_slot_5;
+        this.max_spell_slot_6 = max_spell_slot_6;
+        this.max_spell_slot_7 = max_spell_slot_7;
+        this.max_spell_slot_8 = max_spell_slot_8;
+        this.max_spell_slot_9 = max_spell_slot_9;
     }
+
+//    public Character(Long id, int race_id, int class_id, int character_level, String name, int max_spell_slot_1) {
+//        this.id = id;
+//        this.race_id = race_id;
+//        this.class_id = class_id;
+//        this.character_level = character_level;
+//        this.name = name;
+//        this.max_spell_slot_1 = max_spell_slot_1;
+//        //cs.putSpellSlots(this);
+//    }
 
     public Long getId() {
         return id;
@@ -58,11 +87,11 @@ public class Character {
     }
 
     public int getClass_id() {
-        return character_id;
+        return class_id;
     }
 
     public void setClass_id(int character_id) {
-        this.character_id = character_id;
+        this.class_id = character_id;
     }
 
     public int getCharacter_level() {

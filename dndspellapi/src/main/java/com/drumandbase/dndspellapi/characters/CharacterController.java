@@ -27,16 +27,16 @@ public class CharacterController {
         return characterService.getCharacter(id);
     }
 
-    @PutMapping
+    @PostMapping
     public void addCharacter(@RequestBody Character character) {
         characterService.addCharacter(character);
     }
 
-    @PutMapping("{id}")
-    public void addCharacter(@PathVariable("id") Long id,
-                             @RequestParam(required = false) /*TODO*/) {
-        characterService.updateCharacter(/*TODO:*/);
-    }
+//    @PutMapping("{id}")
+//    public void addCharacter(@PathVariable("id") Long id,
+//                             @RequestParam(required = false) /*TODO*/) {
+//        characterService.updateCharacter(/*TODO:*/);
+//    }
 
     @DeleteMapping("{id}")
     public void deleteCharacter(@PathVariable("id") Long id){
