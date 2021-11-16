@@ -5,11 +5,14 @@ import java.util.Objects;
 public class Spell {
 
     private long id;
-    private String spell_name;
-    private String spell_level;
+    private String spellName;
+    private int spellLevel;
+    private int schoolId;
     private String range;
     private String components;
     private String duration;
+    private String description;
+    private String higherLevel;
     private Boolean ritual;
     private Boolean canSorcerer;
     private Boolean canWizard;
@@ -20,15 +23,16 @@ public class Spell {
     private Boolean canCleric;
     private Boolean canRanger;
 
-
-
-    public Spell(long id, String spell_name, String spell_level, String range, String components, String duration, Boolean ritual, Boolean canSorcerer, Boolean canWizard, Boolean canWarlock, Boolean canBard, Boolean canPaladin, Boolean canDruid, Boolean canCleric, Boolean canRanger) {
+    public Spell(long id, String spellName, int spellLevel, int schoolId, String range, String components, String duration,String description, String higherLevel, Boolean ritual, Boolean canSorcerer, Boolean canWizard, Boolean canWarlock, Boolean canBard, Boolean canPaladin, Boolean canDruid, Boolean canCleric, Boolean canRanger) {
         this.id = id;
-        this.spell_name = spell_name;
-        this.spell_level = spell_level;
+        this.spellName = spellName;
+        this.spellLevel = spellLevel;
+        this.schoolId = schoolId;
         this.range = range;
         this.components = components;
         this.duration = duration;
+        this.description = description;
+        this.higherLevel = higherLevel;
         this.ritual = ritual;
         this.canSorcerer = canSorcerer;
         this.canWizard = canWizard;
@@ -38,6 +42,22 @@ public class Spell {
         this.canDruid = canDruid;
         this.canCleric = canCleric;
         this.canRanger = canRanger;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getHigherLevel() {
+        return higherLevel;
+    }
+
+    public void setHigherLevel(String higherLevel) {
+        this.higherLevel = higherLevel;
     }
 
     public Boolean getCanSorcerer() {
@@ -112,20 +132,29 @@ public class Spell {
         this.id = id;
     }
 
-    public String getSpell_name() {
-        return spell_name;
+    public String getSpellName() {
+        return spellName;
     }
 
-    public void setSpell_name(String spell_name) {
-        this.spell_name = spell_name;
+    public void setSpellName(String spellName) {
+        this.spellName = spellName;
     }
 
-    public String getSpell_level() {
-        return spell_level;
+    public int getSchoolID() {
+        return schoolId;
     }
 
-    public void setSpell_level(String spell_level) {
-        this.spell_level = spell_level;
+    public void setSchoolID(int schoolId) {
+        this.schoolId = schoolId;
+    }
+
+
+    public int getSpellLevel() {
+        return spellLevel;
+    }
+
+    public void setSpellLevel(int spellLevel) {
+        this.spellLevel = spellLevel;
     }
 
     public String getRange() {
@@ -165,23 +194,25 @@ public class Spell {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Spell spell = (Spell) o;
-        return id == spell.id && Objects.equals(spell_name, spell.spell_name) && Objects.equals(spell_level, spell.spell_level) && Objects.equals(range, spell.range) && Objects.equals(components, spell.components) && Objects.equals(duration, spell.duration) && Objects.equals(ritual, spell.ritual) && Objects.equals(canSorcerer, spell.canSorcerer) && Objects.equals(canWizard, spell.canWizard) && Objects.equals(canWarlock, spell.canWarlock) && Objects.equals(canBard, spell.canBard) && Objects.equals(canPaladin, spell.canPaladin) && Objects.equals(canDruid, spell.canDruid) && Objects.equals(canCleric, spell.canCleric) && Objects.equals(canRanger, spell.canRanger);
+        return id == spell.id && Objects.equals(spellName, spell.spellName) && Objects.equals(spellLevel, spell.spellLevel) && Objects.equals(range, spell.range) && Objects.equals(components, spell.components) && Objects.equals(duration, spell.duration) && Objects.equals(description, spell.description) && Objects.equals(higherLevel, spell.higherLevel) && Objects.equals(ritual, spell.ritual) && Objects.equals(canSorcerer, spell.canSorcerer) && Objects.equals(canWizard, spell.canWizard) && Objects.equals(canWarlock, spell.canWarlock) && Objects.equals(canBard, spell.canBard) && Objects.equals(canPaladin, spell.canPaladin) && Objects.equals(canDruid, spell.canDruid) && Objects.equals(canCleric, spell.canCleric) && Objects.equals(canRanger, spell.canRanger);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, spell_name, spell_level, range, components, duration, ritual, canSorcerer, canWizard, canWarlock, canBard, canPaladin, canDruid, canCleric, canRanger);
+        return Objects.hash(id, spellName, spellLevel, range, components, duration, description, higherLevel, ritual, canSorcerer, canWizard, canWarlock, canBard, canPaladin, canDruid, canCleric, canRanger);
     }
 
     @Override
     public String toString() {
         return "Spell{" +
                 "id=" + id +
-                ", spell_name='" + spell_name + '\'' +
-                ", spell_level='" + spell_level + '\'' +
+                ", spellName='" + spellName + '\'' +
+                ", spellLevel='" + spellLevel + '\'' +
                 ", range='" + range + '\'' +
                 ", components='" + components + '\'' +
                 ", duration='" + duration + '\'' +
+                ", description='" + description + '\'' +
+                ", higherLevel='" + higherLevel + '\'' +
                 ", ritual=" + ritual +
                 ", canSorcerer=" + canSorcerer +
                 ", canWizard=" + canWizard +

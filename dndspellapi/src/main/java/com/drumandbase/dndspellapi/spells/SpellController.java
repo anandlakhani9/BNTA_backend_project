@@ -34,9 +34,9 @@ public class SpellController {
     }
 
     @PostMapping
-    /*public void addSpell(@RequestBody Spell spell){
-        spellService.addSpell(spell.getSpell_name(), ));
-    }*/
+    public void addSpell(@RequestBody Spell spell){
+        spellService.addSpell(spell);
+    }
 
     @PutMapping("{id}")
     /*public void updateSpell(@PathVariable("id") int id,
