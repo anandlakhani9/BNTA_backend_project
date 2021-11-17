@@ -28,7 +28,9 @@ CREATE TABLE characters (id BIGSERIAL PRIMARY KEY ,
     race_id INT NOT NULL REFERENCES dndraces(id),
     character_level INT NOT NULL,
     name TEXT NOT NULL,
+    cantrips_known INT NOT NULL,
     max_cantrips_known INT NOT NULL,
+    spells_known INT NOT NULL,
     max_spells_known int NOT NULL,
     spell_slot_1 INT NOT NULL,
     spell_slot_2 INT NOT NULL,
@@ -47,12 +49,15 @@ CREATE TABLE characters (id BIGSERIAL PRIMARY KEY ,
     max_spell_slot_6 INT NOT NULL,
     max_spell_slot_7 INT NOT NULL,
     max_spell_slot_8 INT NOT NULL,
-    max_spell_slot_9 INT NOT NULL
+    max_spell_slot_9 INT NOT NULL,
+    max_ivocations_known INT NOT NULL
+
     );
 
 CREATE TABLE character_spells (id BIGSERIAL PRIMARY KEY,
     character_id BIGINT NOT NULL REFERENCES characters(id),
-    spell_id BIGINT NOT NULL REFERENCES spells(id)
+    spell_id BIGINT NOT NULL REFERENCES spells(id),
+    spell_is_known BOOLEAN NOT NULL
     );
 
 INSERT INTO schools (school_name, school_description)

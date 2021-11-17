@@ -28,6 +28,7 @@ public class SpellDataAccessService implements SpellDAO{
     @Override
     public Optional<Spell> selectSpellByID(long id) {
         String sql = """
+
                      SELECT * FROM spells WHERE id = ?; 
                      """;
 
