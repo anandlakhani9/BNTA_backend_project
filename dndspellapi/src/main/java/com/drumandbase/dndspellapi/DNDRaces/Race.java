@@ -39,28 +39,19 @@ public class Race{
         this.race_description = race_description;
     }
 
-    public Race() {
-        super();
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Race race = (Race) o;
+        return id == race.id && Objects.equals(race_name, race.race_name) && Objects.equals(race_description, race.race_description);
     }
 
     @Override
     public int hashCode() {
-        return super.hashCode();
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        return super.equals(obj);
-    }
-
-    @Override
-    protected Object clone() throws CloneNotSupportedException {
-        return super.clone();
-    }
-
-    @Override
-    protected void finalize() throws Throwable {
-        super.finalize();
+        return Objects.hash(id, race_name, race_description);
     }
 
     @Override
