@@ -49,7 +49,7 @@ public class CharacterSpellsDataAccessService implements CharacterSpellsDAO{
     public List<CharacterSpells> selectAllCharacterSpellsByCharacterID(long id) {
         String sql = """
                 SELECT * FROM character_spells
-                WHERE id = ?;
+                WHERE character_id = ?;
                 """;
         return jdbcTemplate.query(sql, new CharacterSpellsRowMapper(), id);
     }

@@ -350,7 +350,9 @@ public class CharacterSpellsService {
 
     private boolean isSpellAlreadyInBook(long id, Spell spell){
         List<CharacterSpells> spellbook = csDAO.selectAllCharacterSpellsByCharacterID(id);
+        System.out.println(spellbook.toArray().length);
         for (CharacterSpells someSpell : spellbook) {
+            System.out.println(someSpell);
             if (someSpell.getSpellID() == spell.getId()) {
                 System.out.println("found");
                 return true;
@@ -361,7 +363,7 @@ public class CharacterSpellsService {
     }
 
     private  void addCanTrip(CharacterSpells cs, Character character, Spell spell){
-        if(!isSpellAlreadyInBook(character.getId(), spell)){
+        if(!isSpellAlreadyInBook(character.getId(), spell) && spell.getId() == 0){
             csDAO.insertSpell(cs);
             character.setCantrips_known(character.getCantrips_known() + 1);
             //need to update character db, method needs to be defined first
@@ -388,7 +390,7 @@ public class CharacterSpellsService {
     }
 
     private  void addSpell(CharacterSpells cs, Character character, Spell spell){
-        if(!isSpellAlreadyInBook(character.getId(), spell)){
+        if(!isSpellAlreadyInBook(character.getId(), spell) && spell.getId() > 0){
             csDAO.insertSpell(cs);
             character.setSpells_known(character.getSpells_known() + 1);
             //need to update character db, method needs to be defined first
@@ -458,6 +460,123 @@ public class CharacterSpellsService {
             }
         }
     }
+    private void addSpellLv4Logic(Character character, Spell spell, CharacterSpells cs){
+        if (spell.getSpellLevel() == 4){
+            if (character.getMax_spells_known() == -1){
+                addSpell(cs, character, spell);
+            }
+            else if(character.getSpells_known() < character.getMax_spells_known()
+                    && character.getMax_spells_known() != 0){
+                if(character.getMax_spell_slot_4() > 0){
+                    addSpell(cs, character, spell);
+                }
+                else {
+                    throw new IllegalStateException("spell too high level");
+                }
+            }
+            else{
+                throw new IllegalStateException("number of spells full");
+            }
+        }
+    }
+
+    private void addSpellLv5Logic(Character character, Spell spell, CharacterSpells cs){
+        if (spell.getSpellLevel() == 5){
+            if (character.getMax_spells_known() == -1){
+                addSpell(cs, character, spell);
+            }
+            else if(character.getSpells_known() < character.getMax_spells_known()
+                    && character.getMax_spells_known() != 0){
+                if(character.getMax_spell_slot_5() > 0){
+                    addSpell(cs, character, spell);
+                }
+                else {
+                    throw new IllegalStateException("spell too high level");
+                }
+            }
+            else{
+                throw new IllegalStateException("number of spells full");
+            }
+        }
+    }
+    private void addSpellLv6Logic(Character character, Spell spell, CharacterSpells cs){
+        if (spell.getSpellLevel() == 6){
+            if (character.getMax_spells_known() == -1){
+                addSpell(cs, character, spell);
+            }
+            else if(character.getSpells_known() < character.getMax_spells_known()
+                    && character.getMax_spells_known() != 0){
+                if(character.getMax_spell_slot_6() > 0){
+                    addSpell(cs, character, spell);
+                }
+                else {
+                    throw new IllegalStateException("spell too high level");
+                }
+            }
+            else{
+                throw new IllegalStateException("number of spells full");
+            }
+        }
+    }
+    private void addSpellLv7Logic(Character character, Spell spell, CharacterSpells cs){
+        if (spell.getSpellLevel() == 7){
+            if (character.getMax_spells_known() == -1){
+                addSpell(cs, character, spell);
+            }
+            else if(character.getSpells_known() < character.getMax_spells_known()
+                    && character.getMax_spells_known() != 0){
+                if(character.getMax_spell_slot_7() > 0){
+                    addSpell(cs, character, spell);
+                }
+                else {
+                    throw new IllegalStateException("spell too high level");
+                }
+            }
+            else{
+                throw new IllegalStateException("number of spells full");
+            }
+        }
+    }
+
+    private void addSpellLv8Logic(Character character, Spell spell, CharacterSpells cs){
+        if (spell.getSpellLevel() == 8){
+            if (character.getMax_spells_known() == -1){
+                addSpell(cs, character, spell);
+            }
+            else if(character.getSpells_known() < character.getMax_spells_known()
+                    && character.getMax_spells_known() != 0){
+                if(character.getMax_spell_slot_8() > 0){
+                    addSpell(cs, character, spell);
+                }
+                else {
+                    throw new IllegalStateException("spell too high level");
+                }
+            }
+            else{
+                throw new IllegalStateException("number of spells full");
+            }
+        }
+    }
+
+    private void addSpellLv9Logic(Character character, Spell spell, CharacterSpells cs){
+        if (spell.getSpellLevel() == 9){
+            if (character.getMax_spells_known() == -1){
+                addSpell(cs, character, spell);
+            }
+            else if(character.getSpells_known() < character.getMax_spells_known()
+                    && character.getMax_spells_known() != 0){
+                if(character.getMax_spell_slot_9() > 0){
+                    addSpell(cs, character, spell);
+                }
+                else {
+                    throw new IllegalStateException("spell too high level");
+                }
+            }
+            else{
+                throw new IllegalStateException("number of spells full");
+            }
+        }
+    }
 
     public void addSpell4(CharacterSpells cs){
         Character character = characterDAO.selectCharacterById(cs.getCharacterID()).get();
@@ -472,6 +591,12 @@ public class CharacterSpellsService {
             addSpellLv1Logic(character, spell, cs);
             addSpellLv2Logic(character, spell, cs);
             addSpellLv3Logic(character, spell, cs);
+            addSpellLv4Logic(character, spell, cs);
+            addSpellLv5Logic(character, spell, cs);
+            addSpellLv6Logic(character, spell, cs);
+            addSpellLv7Logic(character, spell, cs);
+            addSpellLv8Logic(character, spell, cs);
+            addSpellLv9Logic(character, spell, cs);
         }
 
     }
