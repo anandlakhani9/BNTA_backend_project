@@ -86,25 +86,33 @@ public class SpellService {
                         canSorcerer!= null &&
                         canWizard!= null &&
         ) {*/
-//            spellDAO.insertSpell(
-//                    name,
-//                    level,
-//                    schoolId,
-//                    range,
-//                    components,
-//                    duration,
-//                    description,
-//                    higherLevel,
-//                    ritual,
-//                    canSorcerer,
-//                    canWizard,
-//                    canWarlock,
-//                    canBard,
-//                    canPaladin,
-//                    canDruid,
-//                    canCleric,
-//                    canRanger);
 
+//        if (spell.getSpellName().trim().length() == 0) {
+//          throw new IllegalStateException("Spell name cannot be blank");
+//        } if (spell.getSpellName().trim().length() == 0) {
+//            throw new IllegalStateException("Spell name cannot be blank");
+//        }
+//        if (spellLevel != null) {
+//            spell.setSpellName(spellName);
+//        }
+//        if (schoolId != null){
+//            spell.setSchoolID(schoolId);
+//        }
+//        if (range != null && range.length() > 0) {
+//            spell.setRange(range);
+//        }
+//        if(components != null && components.length() > 0 ){
+//            spell.setComponents(components);
+//        }
+//        if(duration != null && duration.length() > 0 ){
+//            spell.setComponents(components);
+//        }
+//        if(description != null && description.length() > 0 ){
+//            spell.setComponents(components);
+//        }
+//        if(higherLevel != null && higherLevel.length() > 0 ){
+//            spell.setComponents(components);
+//        }
         spellDAO.insertSpell(spell);
 
 /*        } else {
@@ -144,37 +152,66 @@ public class SpellService {
                             String description, String higherLevel, Boolean ritual, Boolean canSorcerer, Boolean canWizard,
                             Boolean canWarlock, Boolean canBard, Boolean canPaladin, Boolean canDruid,
                             Boolean canCleric, Boolean canRanger) {
-//
-//        spellDAO.updatespell(id, name, description);
-//        Spell spell = getSpell(id)
-//                .orElseThrow(() ->
-//                        new ResourceNotFound("spell with this id:" + id + " doesn't exist")
-//                );
-//        if (name != null && name.length() > 0 && !spell.getSpell_name().equals(name)) {
-//            spell.setSpell_name(name);
-//        }
-//        if (description != null && description.length() > 0 && !spell.getSpell_description().equals(description)) {
-//            spell.setSpell_description(description);
-//
-//        }
+
+        Spell spell = getSpell(id)
+                .orElseThrow(() ->
+                        new ResourceNotFound("spell with this id:" + id + " doesn't exist")
+                );
+        if (spellName != null && spellName.length() > 0) {
+            spell.setSpellName(spellName);
+        }
+        if (spellLevel != null) {
+            spell.setSpellName(spellName);
+        } if (schoolId != null){
+            spell.setSchoolID(schoolId);
+        } if (range != null && range.length() > 0) {
+            spell.setRange(range);
+        } if(components != null && components.length() > 0 ){
+            spell.setComponents(components);
+        } if(duration != null && duration.length() > 0 ){
+            spell.setComponents(components);
+        } if(description != null && description.length() > 0 ){
+            spell.setComponents(components);
+        } if(higherLevel != null && higherLevel.length() > 0 ){
+            spell.setComponents(components);
+        } if(ritual != null){
+            spell.setRitual(ritual);
+        } if(canSorcerer != null){
+            spell.setCanSorcerer(canSorcerer);
+        } if(canWizard != null){
+            spell.setCanWizard(canWizard);
+        } if(canWarlock != null){
+            spell.setCanWarlock(canWarlock);
+        } if(canBard!= null){
+            spell.setCanBard(canBard);
+        } if(canPaladin!= null){
+            spell.setCanPaladin(canPaladin);
+        }  if(canDruid != null){
+            spell.setCanDruid(canDruid);
+        }  if(canCleric != null){
+            spell.setCanCleric(canCleric);
+        } if(canRanger != null){
+            spell.setCanRanger(canRanger);
+        }
+
         spellDAO.updateSpell(
-                id,
-                spellName,
-                spellLevel,
-                schoolId,
-                range,
-                components,
-                duration,
-                description,
-                higherLevel,
-                ritual,
-                canSorcerer,
-                canWizard,
-                canWarlock,
-                canBard,
-                canPaladin,
-                canDruid,
-                canCleric,
-                canRanger);
+                spell.getId(),
+                spell.getSpellName(),
+                spell.getSpellLevel(),
+                spell.getSchoolID(),
+                spell.getRange(),
+                spell.getComponents(),
+                spell.getDuration(),
+                spell.getDescription(),
+                spell.getHigherLevel(),
+                spell.getRitual(),
+                spell.getCanSorcerer(),
+                spell.getCanWizard(),
+                spell.getCanWarlock(),
+                spell.getCanBard(),
+                spell.getCanPaladin(),
+                spell.getCanDruid(),
+                spell.getCanCleric(),
+                spell.getCanRanger());
     }
 }

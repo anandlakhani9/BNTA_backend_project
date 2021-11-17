@@ -1,5 +1,6 @@
 package com.drumandbase.dndspellapi.spells;
 
+import com.drumandbase.dndspellapi.schools.SchoolRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -26,12 +27,20 @@ public class SpellDataAccessService implements SpellDAO{
 
     @Override
     public Optional<Spell> selectSpellByID(long id) {
-        return Optional.empty();
+        String sql = """
+                     SELECT * FROM spells WHERE id = ?; 
+                     """;
+
+        return jdbcTemplate.query(sql, new SpellRowMapper(), id).stream().findFirst();
     }
 
     @Override
     public Optional<Spell> selectSpellByName(String name) {
-        return Optional.empty();
+        String sql = """
+                    SELECT * FROM spells WHERE spell_name = ?; 
+                """;
+
+        return jdbcTemplate.query(sql, new SpellRowMapper(), name).stream().findFirst();
     }
 
     @Override
@@ -46,7 +55,7 @@ public class SpellDataAccessService implements SpellDAO{
                 components = ?,
                 duration = ?, 
                 description = ?, 
-                higherLevel = ?, 
+                higher_level = ?, 
                 ritual = ?, 
                 canSorcerer = ?,
                 canWizard = ?,
@@ -55,7 +64,7 @@ public class SpellDataAccessService implements SpellDAO{
                 canPaladin = ?,  
                 canDruid = ?,
                 canCleric = ?, 
-                canRanger = ?,
+                canRanger = ?
                 WHERE id = ?;
                 """;
 
