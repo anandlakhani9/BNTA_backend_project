@@ -3,6 +3,7 @@ package com.drumandbase.dndspellapi.characterSpells;
 import com.drumandbase.dndspellapi.characters.CharacterDAO;
 import com.drumandbase.dndspellapi.characters.CharacterService;
 import com.drumandbase.dndspellapi.dndclasses.DnDClassDAO;
+import com.drumandbase.dndspellapi.exceptions.ResourceNotFound;
 import com.drumandbase.dndspellapi.schools.School;
 import com.drumandbase.dndspellapi.spells.SpellDAO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import com.drumandbase.dndspellapi.characters.Character;
 import com.drumandbase.dndspellapi.spells.Spell;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CharacterSpellsService {
@@ -599,6 +601,18 @@ public class CharacterSpellsService {
             addSpellLv9Logic(character, spell, cs);
         }
 
+    }
+
+    public void deleteSpell(long id) {
+        CharacterSpells cs = getSpell(id)
+                .orElseThrow(() ->
+                        new ResourceNotFound("School with this id:" + id + " doesn't exist")
+                );
+        csDAO.deleteSpell(id);
+    }
+
+    private Optional<CharacterSpells> getSpell(long id) {
+        return csDAO.getRecord(id);
     }
 }
 

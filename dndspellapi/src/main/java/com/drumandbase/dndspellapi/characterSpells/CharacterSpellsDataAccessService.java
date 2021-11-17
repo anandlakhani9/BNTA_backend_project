@@ -5,6 +5,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository("spellbook")
 public class CharacterSpellsDataAccessService implements CharacterSpellsDAO{
@@ -13,6 +14,15 @@ public class CharacterSpellsDataAccessService implements CharacterSpellsDAO{
 
     public CharacterSpellsDataAccessService(JdbcTemplate jdbcTemplate){
         this.jdbcTemplate = jdbcTemplate;
+    }
+
+    @Override
+    public Optional<CharacterSpells> getRecord(long id) {
+        String sql = """
+                SELECT * FROM character_spells
+                WHERE id = ?;
+                """;
+        return jdbcTemplate.query(sql, new CharacterSpellsRowMapper(), id).stream().findFirst();
     }
 
     //select the characterSpellID as csID

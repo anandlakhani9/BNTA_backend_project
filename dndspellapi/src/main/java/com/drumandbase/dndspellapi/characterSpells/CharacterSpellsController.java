@@ -25,4 +25,9 @@ public class CharacterSpellsController {
         csService.addSpell4(cs);
     }
 
+    @DeleteMapping("{id}")
+    public void deleteCharacterSpell(@PathVariable("id") long id){
+        csService.deleteSpell(id);
+
+    }
 }
