@@ -34,7 +34,7 @@ public class SpellService {
         return spellDAO.selectSpellByName(name);
     }
 
-    public void addSpell(Spell spell){
+    public int addSpell(Spell spell){
 
         if (spell.getSpellName().trim().length() == 0) {
           throw new IllegalStateException("The spell name input cannot be blank");
@@ -50,16 +50,21 @@ public class SpellService {
             throw new IllegalStateException("The higher level cannot be blank");
         }
 
-        spellDAO.insertSpell(spell);
-
+        return spellDAO.insertSpell(spell);
     }
 
-    public void deleteSpell(long id) {
-        Spell spell = getSpell(id)
-                .orElseThrow(() ->
-                        new ResourceNotFound("spell with this id:" + id + " doesn't exist")
-                );
-        spellDAO.deleteSpell(id);
+    public int deleteSpell(long id) {
+
+//        Spell spell = getSpell(id).orElseThrow(() ->
+//                        new ResourceNotFound("spell with this id:" + id + " doesn't exist")
+//                );
+        boolean exists = doesPersonWithIdExists(id);
+
+        if (!exists) {
+            throw new IllegalStateException("person with id " + id + " not found");
+        }
+
+        return spellDAO.deleteSpell(id);
     }
 
     public void updateSpell(long id, String spellName, Integer spellLevel, Integer schoolId, String range, String components, String duration,
@@ -128,4 +133,13 @@ public class SpellService {
                 spell.getCanCleric(),
                 spell.getCanRanger());
     }
+
+
+    private boolean doesPersonWithIdExists(long id) {
+        return spellDAO
+                .selectAllSpells()
+                .stream()
+                .anyMatch(p -> p.getId() == id);
+    }
+
 }
