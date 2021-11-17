@@ -63,7 +63,9 @@ CREATE TABLE character_spells (id BIGSERIAL PRIMARY KEY,
 INSERT INTO schools (school_name, school_description)
 VALUES ('Abjuration','Spells are protective in  nature, though some of them  have aggressive uses. They create magical barriers, negate harmful effects,  harm trespassers, or banish creatures to other planes of existence.');
 INSERT INTO schools (school_name, school_description)
-VALUES ('Conjuration','Spells involve the transportation of objects and creatures from one location to another. Some spells summon creatures or objects to the caster’s side, whereas others allow the caster to teleport to another location. Some conjurations create objects or effects out of nothing. Divination spells reveal information, whether in the form of secrets long forgotten, glimpses of the future, the locations of hidden things, the truth behind illusions, or visions of distant people or places.');
+VALUES ('Conjuration','Spells involve the transportation of objects and creatures from one location to another. Some spells summon creatures or objects to the caster’s side, whereas others allow the caster to teleport to another location. Some conjurations create objects or effects out of nothing.');
+INSERT INTO schools (school_name, school_description)
+VALUES ('Divination','Spells reveal information, whether in the form of secrets long forgotten, glimpses of the future, the locations of hidden things, the truth behind illusions, or visions of distant people or places.');
 INSERT INTO schools (school_name, school_description)
 VALUES ('Enchantment','Spells affect the minds of others, influencing or controlling their behavior. Such spells can  make enemies see the caster as a friend, force creatures to take a course of action, or even control another creature like a puppet.');
 INSERT INTO schools (school_name, school_description)
