@@ -56,7 +56,8 @@ CREATE TABLE characters (id BIGSERIAL PRIMARY KEY ,
 
 CREATE TABLE character_spells (id BIGSERIAL PRIMARY KEY,
     character_id BIGINT NOT NULL REFERENCES characters(id),
-    spell_id BIGINT NOT NULL REFERENCES spells(id)
+    spell_id BIGINT NOT NULL REFERENCES spells(id),
+    spell_is_known BOOLEAN NOT NULL
     );
 
 INSERT INTO schools (school_name, school_description)

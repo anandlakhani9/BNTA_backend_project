@@ -3,6 +3,7 @@ package com.drumandbase.dndspellapi.characters;
 import com.drumandbase.dndspellapi.dndclasses.DnDClass;
 import com.drumandbase.dndspellapi.dndclasses.DnDClassController;
 import com.drumandbase.dndspellapi.exceptions.ResourceNotFound;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -44,6 +45,7 @@ public class CharacterDataAccessServer  implements CharacterDAO{
     private JdbcTemplate jdbcTemplate;
 
     //private CharacterService cs;
+    @Autowired
     public CharacterDataAccessServer(JdbcTemplate jdbcTemplate, DnDClassController dnDClassController) {
         this.jdbcTemplate = jdbcTemplate;
         this.dnDClassController = dnDClassController;
@@ -61,7 +63,11 @@ public class CharacterDataAccessServer  implements CharacterDAO{
 
     @Override
     public Optional<Character> selectCharacterById(Long id) {
-        return Optional.empty();
+        String sql = """
+                SELECT * FROM characters
+                WHERE id = ?;
+                """;
+        return jdbcTemplate.query(sql, new CharacterRowMapper(), id).stream().findFirst();
     }
 
     @Override

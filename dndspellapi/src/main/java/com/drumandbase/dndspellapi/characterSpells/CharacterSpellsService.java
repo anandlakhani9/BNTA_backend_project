@@ -2,6 +2,7 @@ package com.drumandbase.dndspellapi.characterSpells;
 
 import com.drumandbase.dndspellapi.characters.CharacterDAO;
 import com.drumandbase.dndspellapi.dndclasses.DnDClassDAO;
+import com.drumandbase.dndspellapi.schools.School;
 import com.drumandbase.dndspellapi.spells.SpellDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -20,8 +21,11 @@ public class CharacterSpellsService {
     private DnDClassDAO classDAO;
 
     @Autowired
-    public CharacterSpellsService(@Qualifier("spellbook") CharacterSpellsDAO csDAO){
+    public CharacterSpellsService(@Qualifier("spellbook") CharacterSpellsDAO csDAO, CharacterDAO characterDAO, SpellDAO spellDAO, DnDClassDAO classDAO){
         this.csDAO = csDAO;
+        this.characterDAO = characterDAO;
+        this.spellDAO=spellDAO;
+        this.classDAO = classDAO;
     }
 
     public List<SpellbookDisplay> getACharactersSpellsByID(long id){
@@ -58,9 +62,93 @@ public class CharacterSpellsService {
 
     }*/
 
+    public boolean canKnowSpell(String characterClass, Spell spell){
+        System.out.println(characterClass);
+        if (characterClass.equals("Sorcerer") && spell.getCanSorcerer()) {
+            return true;
+        }
+        else if (characterClass.equals("Wizard") && spell.getCanWizard()){
+            return true;
+        }
+        else if (characterClass.equals("Warlock") && spell.getCanWarlock()){
+            return true;
+        }
+        else if (characterClass.equals("Bard") && spell.getCanBard()){
+            return true;
+        }
+        else if (characterClass.equals("Paladin") && spell.getCanPaladin()){
+            return true;
+        }
+        else if (characterClass.equals("Druid") && spell.getCanDruid()){
+            return true;
+        }
+        else if (characterClass.equals("Cleric") && spell.getCanCleric()){
+            return true;
+        }
+        else if (characterClass.equals("Ranger") && spell.getCanRanger()){
+            return true;
+        }
+        return false;
+    }
+
 //    public void addSpell(long characterID, long spellID){
-    public void addSpell(CharacterSpells cs){
+    public void addSpell2(CharacterSpells cs){
         csDAO.insertSpell(cs);
     }
+
+    public void addSpell(CharacterSpells cs){
+        Character character = characterDAO
+                .selectCharacterById(cs.getCharacterID()).orElseThrow(() -> new IllegalStateException("something wrong"));
+        System.out.println(character);
+        String className = classDAO.selectDnDClassById(character.getClass_id()).get().getClass_name();
+        Spell spell = spellDAO
+                .selectSpellByID(cs.getSpellID()).get();
+        // if it is not a spell the character actually wants to know
+        // add it to the database
+        if (!cs.getSpellIsKnown()){
+            csDAO.insertSpell(cs);
+        }
+        //otherwise, need to check it can learn the spell
+        else {
+            if (spell.getSpellLevel() == 0){
+                if (character.getCantrips_known()< character.getMax_cantrips_known()
+                        && character.getMax_cantrips_known()!=0){
+                    if(canKnowSpell(className, spell)){
+                        csDAO.insertSpell(cs);
+                        character.setCantrips_known(character.getCantrips_known()+1);
+                        //need to update character db, method needs to be defined first
+                        //characterDAO.updateCharacterByID(character);
+                    }
+                    else {
+                        throw new IllegalStateException("this character cannot learn this cantrip");
+                    }
+                }
+                else {
+                    throw new IllegalStateException("number of cantrips full");
+                }
+            }
+            else if (spell.getSpellLevel() == 1){
+                if (character.getSpells_known()< character.getMax_spells_known()
+                        && character.getMax_spells_known()!=0
+                        && character.getMax_spell_slot_1()!=0){
+                    if(canKnowSpell(className, spell)){
+                        csDAO.insertSpell(cs);
+                        character.setCantrips_known(character.getCantrips_known()+1);
+                        //need to update character db, method needs to be defined first
+                        //characterDAO.updateCharacterByID(character);
+                    }
+                    else {
+                        throw new IllegalStateException("this character cannot learn this spell");
+                    }
+                }
+                else {
+                    throw new IllegalStateException("number of spells full");
+                }
+            }
+        }
+
+    }
 }
+
+
 

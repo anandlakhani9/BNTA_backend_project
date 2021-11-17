@@ -26,7 +26,11 @@ public class SpellDataAccessService implements SpellDAO{
 
     @Override
     public Optional<Spell> selectSpellByID(long id) {
-        return Optional.empty();
+        String sql = """
+                     SELECT * FROM spells
+                     WHERE id = ?;
+                     """;
+        return jdbcTemplate.query(sql, new SpellRowMapper(), id).stream().findFirst();
     }
 
     @Override

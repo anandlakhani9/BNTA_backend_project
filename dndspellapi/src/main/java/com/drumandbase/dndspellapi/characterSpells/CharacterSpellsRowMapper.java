@@ -11,7 +11,8 @@ public class CharacterSpellsRowMapper implements RowMapper{
         CharacterSpells cSpell = new CharacterSpells(
                 rs.getLong("id"),
                 rs.getLong("character_id"),
-                rs.getLong("spell_id")
+                rs.getLong("spell_id"),
+                rs.getBoolean("spell_is_known")
         );
         return cSpell;
     }

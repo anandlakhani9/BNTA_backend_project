@@ -49,10 +49,10 @@ public class CharacterSpellsDataAccessService implements CharacterSpellsDAO{
     public int insertSpell(CharacterSpells cs) {
     //public int insertSpell(long characterID, long spellID) {
         String sql = """
-                INSERT INTO character_spells (character_id, spell_id)
-                VALUES (?, ?);
+                INSERT INTO character_spells (character_id, spell_id, spell_is_known)
+                VALUES (?, ?,?);
                 """;
-        return jdbcTemplate.update(sql, cs.getCharacterID(), cs.getSpellID());
+        return jdbcTemplate.update(sql, cs.getCharacterID(), cs.getSpellID(), cs.getSpellIsKnown());
     }
 
     @Override
