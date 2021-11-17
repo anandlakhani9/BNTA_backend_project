@@ -114,10 +114,23 @@ public class CharacterSpellsService {
                 if (character.getCantrips_known()< character.getMax_cantrips_known()
                         && character.getMax_cantrips_known()!=0){
                     if(canKnowSpell(className, spell)){
-                        csDAO.insertSpell(cs);
-                        character.setCantrips_known(character.getCantrips_known()+1);
-                        //need to update character db, method needs to be defined first
-                        //characterDAO.updateCharacterByID(character);
+                        List<CharacterSpells> spellbook = csDAO.selectAllCharacterSpellsByCharacterID(character.getId());
+                        boolean exists = false;
+                        for (CharacterSpells someSpell:spellbook) {
+                            if (someSpell.getSpellID() == spell.getId()){
+                                exists = true;
+                                break;
+                            }
+                        }
+                        if(!exists){
+                            csDAO.insertSpell(cs);
+                            character.setCantrips_known(character.getCantrips_known()+1);
+                            //need to update character db, method needs to be defined first
+                            //characterDAO.updateCharacterByID(character);
+                        }
+                        else {
+                            throw new IllegalStateException("spell with this id is already in spellbook");
+                        }
                     }
                     else {
                         throw new IllegalStateException("this character cannot learn this cantrip");
@@ -132,10 +145,25 @@ public class CharacterSpellsService {
                         && character.getMax_spells_known()!=0
                         && character.getMax_spell_slot_1()!=0){
                     if(canKnowSpell(className, spell)){
-                        csDAO.insertSpell(cs);
-                        character.setCantrips_known(character.getCantrips_known()+1);
-                        //need to update character db, method needs to be defined first
-                        //characterDAO.updateCharacterByID(character);
+                        List<CharacterSpells> spellbook = csDAO.selectAllCharacterSpellsByCharacterID(character.getId());
+                        boolean exists = false;
+                        for (CharacterSpells someSpell:spellbook) {
+                            if (someSpell.getSpellID() == spell.getId()){
+                                exists = true;
+                                break;
+                            }
+
+                        }
+                        if(!exists){
+                            csDAO.insertSpell(cs);
+                            character.setCantrips_known(character.getCantrips_known()+1);
+                            //need to update character db, method needs to be defined first
+                            //characterDAO.updateCharacterByID(character);
+                        }
+                        else {
+                            throw new IllegalStateException("spell with this id is already in spellbook");
+                        }
+
                     }
                     else {
                         throw new IllegalStateException("this character cannot learn this spell");

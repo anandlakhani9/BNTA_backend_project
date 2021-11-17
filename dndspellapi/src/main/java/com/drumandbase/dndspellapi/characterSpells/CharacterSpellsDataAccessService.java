@@ -46,6 +46,15 @@ public class CharacterSpellsDataAccessService implements CharacterSpellsDAO{
     }
 
     @Override
+    public List<CharacterSpells> selectAllCharacterSpellsByCharacterID(long id) {
+        String sql = """
+                SELECT * FROM character_spells
+                WHERE id = ?;
+                """;
+        return jdbcTemplate.query(sql, new CharacterSpellsRowMapper(), id);
+    }
+
+    @Override
     public int insertSpell(CharacterSpells cs) {
     //public int insertSpell(long characterID, long spellID) {
         String sql = """
