@@ -22,7 +22,7 @@ public class CharacterSpellsController {
 
     @PostMapping
     public void addCharacterSpell(@RequestBody CharacterSpells cs){
-        csService.addSpell(cs);
+        csService.addSpell4(cs);
     }
 
 }

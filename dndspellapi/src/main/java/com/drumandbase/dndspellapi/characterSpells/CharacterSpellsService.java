@@ -88,7 +88,7 @@ public class CharacterSpellsService {
     }*/
 
     //refactor abstract out functionality
-    public void addSpell(CharacterSpells cs) {
+    public void addSpell3(CharacterSpells cs) {
         Character character = characterDAO
                 .selectCharacterById(cs.getCharacterID()).orElseThrow(() -> new IllegalStateException("something wrong"));
         System.out.println(character);
@@ -352,9 +352,11 @@ public class CharacterSpellsService {
         List<CharacterSpells> spellbook = csDAO.selectAllCharacterSpellsByCharacterID(id);
         for (CharacterSpells someSpell : spellbook) {
             if (someSpell.getSpellID() == spell.getId()) {
+                System.out.println("found");
                 return true;
             }
         }
+        System.out.println("not found");
         return false;
     }
 
@@ -457,7 +459,7 @@ public class CharacterSpellsService {
         }
     }
 
-    public void addSpell3(CharacterSpells cs){
+    public void addSpell4(CharacterSpells cs){
         Character character = characterDAO.selectCharacterById(cs.getCharacterID()).get();
         Spell spell = spellDAO.selectSpellByID(cs.getSpellID()).get();
 
