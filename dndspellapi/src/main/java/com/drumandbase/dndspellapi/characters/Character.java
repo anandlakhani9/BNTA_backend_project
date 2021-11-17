@@ -9,7 +9,9 @@ public class Character {
     private int  class_id;
     private int character_level;
     private String name;
+    private int cantrips_known;
     private int max_cantrips_known;
+    private int spells_known;
     private int max_spells_known;
     private int spell_slot_1;
     private int spell_slot_2;
@@ -33,13 +35,15 @@ public class Character {
 
 //    private CharacterService cs;
 
-    public Character(Long id, int race_id, int class_id, int character_level, String name, int max_cantrips_known, int max_spells_known, int spell_slot_1, int spell_slot_2, int spell_slot_3, int spell_slot_4, int spell_slot_5, int spell_slot_6, int spell_slot_7, int spell_slot_8, int spell_slot_9, int max_spell_slot_1, int max_spell_slot_2, int max_spell_slot_3, int max_spell_slot_4, int max_spell_slot_5, int max_spell_slot_6, int max_spell_slot_7, int max_spell_slot_8, int max_spell_slot_9, int max_ivocations_known) {
+    public Character(Long id, int race_id, int class_id, int character_level, String name, int cantrips_known, int max_cantrips_known, int spells_known, int max_spells_known, int spell_slot_1, int spell_slot_2, int spell_slot_3, int spell_slot_4, int spell_slot_5, int spell_slot_6, int spell_slot_7, int spell_slot_8, int spell_slot_9, int max_spell_slot_1, int max_spell_slot_2, int max_spell_slot_3, int max_spell_slot_4, int max_spell_slot_5, int max_spell_slot_6, int max_spell_slot_7, int max_spell_slot_8, int max_spell_slot_9, int max_ivocations_known) {
         this.id = id;
         this.race_id = race_id;
         this.class_id = class_id;
         this.character_level = character_level;
         this.name = name;
+        this.cantrips_known = cantrips_known;
         this.max_cantrips_known = max_cantrips_known;
+        this.spells_known = spells_known;
         this.max_spells_known = max_spells_known;
         this.spell_slot_1 = spell_slot_1;
         this.spell_slot_2 = spell_slot_2;
@@ -62,15 +66,22 @@ public class Character {
         this.max_ivocations_known = max_ivocations_known;
     }
 
-//    public Character(Long id, int race_id, int class_id, int character_level, String name, int max_spell_slot_1) {
-//        this.id = id;
-//        this.race_id = race_id;
-//        this.class_id = class_id;
-//        this.character_level = character_level;
-//        this.name = name;
-//        this.max_spell_slot_1 = max_spell_slot_1;
-//        //cs.putSpellSlots(this);
-//    }
+
+    public int getCantrips_known() {
+        return cantrips_known;
+    }
+
+    public void setCantrips_known(int cantrips_known) {
+        this.cantrips_known = cantrips_known;
+    }
+
+    public int getSpells_known() {
+        return spells_known;
+    }
+
+    public void setSpells_known(int spells_known) {
+        this.spells_known = spells_known;
+    }
 
     public Long getId() {
         return id;
@@ -285,12 +296,12 @@ public class Character {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Character character = (Character) o;
-        return race_id == character.race_id && class_id == character.class_id && character_level == character.character_level && max_cantrips_known == character.max_cantrips_known && max_spells_known == character.max_spells_known && spell_slot_1 == character.spell_slot_1 && spell_slot_2 == character.spell_slot_2 && spell_slot_3 == character.spell_slot_3 && spell_slot_4 == character.spell_slot_4 && spell_slot_5 == character.spell_slot_5 && spell_slot_6 == character.spell_slot_6 && spell_slot_7 == character.spell_slot_7 && spell_slot_8 == character.spell_slot_8 && spell_slot_9 == character.spell_slot_9 && max_spell_slot_1 == character.max_spell_slot_1 && max_spell_slot_2 == character.max_spell_slot_2 && max_spell_slot_3 == character.max_spell_slot_3 && max_spell_slot_4 == character.max_spell_slot_4 && max_spell_slot_5 == character.max_spell_slot_5 && max_spell_slot_6 == character.max_spell_slot_6 && max_spell_slot_7 == character.max_spell_slot_7 && max_spell_slot_8 == character.max_spell_slot_8 && max_spell_slot_9 == character.max_spell_slot_9 && max_ivocations_known == character.max_ivocations_known && Objects.equals(id, character.id) && Objects.equals(name, character.name);
+        return race_id == character.race_id && class_id == character.class_id && character_level == character.character_level && cantrips_known == character.cantrips_known && max_cantrips_known == character.max_cantrips_known && spells_known == character.spells_known && max_spells_known == character.max_spells_known && spell_slot_1 == character.spell_slot_1 && spell_slot_2 == character.spell_slot_2 && spell_slot_3 == character.spell_slot_3 && spell_slot_4 == character.spell_slot_4 && spell_slot_5 == character.spell_slot_5 && spell_slot_6 == character.spell_slot_6 && spell_slot_7 == character.spell_slot_7 && spell_slot_8 == character.spell_slot_8 && spell_slot_9 == character.spell_slot_9 && max_spell_slot_1 == character.max_spell_slot_1 && max_spell_slot_2 == character.max_spell_slot_2 && max_spell_slot_3 == character.max_spell_slot_3 && max_spell_slot_4 == character.max_spell_slot_4 && max_spell_slot_5 == character.max_spell_slot_5 && max_spell_slot_6 == character.max_spell_slot_6 && max_spell_slot_7 == character.max_spell_slot_7 && max_spell_slot_8 == character.max_spell_slot_8 && max_spell_slot_9 == character.max_spell_slot_9 && max_ivocations_known == character.max_ivocations_known && Objects.equals(id, character.id) && Objects.equals(name, character.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, race_id, class_id, character_level, name, max_cantrips_known, max_spells_known, spell_slot_1, spell_slot_2, spell_slot_3, spell_slot_4, spell_slot_5, spell_slot_6, spell_slot_7, spell_slot_8, spell_slot_9, max_spell_slot_1, max_spell_slot_2, max_spell_slot_3, max_spell_slot_4, max_spell_slot_5, max_spell_slot_6, max_spell_slot_7, max_spell_slot_8, max_spell_slot_9, max_ivocations_known);
+        return Objects.hash(id, race_id, class_id, character_level, name, cantrips_known, max_cantrips_known, spells_known, max_spells_known, spell_slot_1, spell_slot_2, spell_slot_3, spell_slot_4, spell_slot_5, spell_slot_6, spell_slot_7, spell_slot_8, spell_slot_9, max_spell_slot_1, max_spell_slot_2, max_spell_slot_3, max_spell_slot_4, max_spell_slot_5, max_spell_slot_6, max_spell_slot_7, max_spell_slot_8, max_spell_slot_9, max_ivocations_known);
     }
 
     @Override
@@ -301,7 +312,9 @@ public class Character {
                 ", class_id=" + class_id +
                 ", character_level=" + character_level +
                 ", name='" + name + '\'' +
+                ", cantrips_known=" + cantrips_known +
                 ", max_cantrips_known=" + max_cantrips_known +
+                ", spells_known=" + spells_known +
                 ", max_spells_known=" + max_spells_known +
                 ", spell_slot_1=" + spell_slot_1 +
                 ", spell_slot_2=" + spell_slot_2 +
