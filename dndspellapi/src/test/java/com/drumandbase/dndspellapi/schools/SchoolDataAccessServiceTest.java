@@ -39,8 +39,6 @@ class SchoolDataAccessServiceTest {
         jdbcTemplate.execute("INSERT INTO schools (school_name, school_description) VALUES ('Evocation', 'jre;iogfj');");
     }
 
-
-
     //@Sql({"classpath:test.sql"})
     @Test
     void selectAllSchools(){
