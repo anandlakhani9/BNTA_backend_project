@@ -10,7 +10,10 @@ public interface CharacterDAO {
     int insertCharacter(Character character);
     int deleteCharacter(Long id);
     //int updateCharacter(/* TODO*/);
+
+    void setCantrips_known(int cantrips);
     void setMax_cantrips_known(int cantrips);
+    void setSpells_known(int spells);
     void setMax_spells_known(int spells);
     void setSpell_slot_1(int spell_slot_1);
     void setSpell_slot_2(int spell_slot_2);

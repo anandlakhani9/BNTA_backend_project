@@ -15,7 +15,9 @@ public class CharacterDataAccessServer  implements CharacterDAO{
 
 
     private HashMap<Integer,Integer[]> spellMap;
+    private int cantrips_known;
     private int max_cantrips_known;
+    private int spells_known;
     private int max_spells_known;
     private int spell_slot_1;
     private int spell_slot_2;
@@ -66,12 +68,12 @@ public class CharacterDataAccessServer  implements CharacterDAO{
     public int insertCharacter(Character character) {
         putSpellSlots(character);
         String sql = """
-                INSERT INTO characters (race_id, class_id, character_level, name, max_cantrips_known, max_spells_known,
+                INSERT INTO characters (race_id, class_id, character_level, name, cantrips_known, max_cantrips_known, spells_known, max_spells_known,
                 spell_slot_1, spell_slot_2, spell_slot_3, spell_slot_4, spell_slot_5, spell_slot_6, spell_slot_7, spell_slot_8, spell_slot_9,
                 max_spell_slot_1, max_spell_slot_2, max_spell_slot_3, max_spell_slot_4, max_spell_slot_5, max_spell_slot_6, max_spell_slot_7, max_spell_slot_8, max_spell_slot_9, max_ivocations_known)
-                VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+                VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
                 """;
-        return jdbcTemplate.update(sql, character.getRace_id(), character.getClass_id(), character.getCharacter_level(), character.getName(), this.getMax_cantrips_known(), this.getMax_spells_known(),
+        return jdbcTemplate.update(sql, character.getRace_id(), character.getClass_id(), character.getCharacter_level(), character.getName(), this.getCantrips_known(), this.getMax_cantrips_known(), this.getSpells_known(), this.getMax_spells_known(),
                 this.getSpell_slot_1(), this.getSpell_slot_2(), this.getSpell_slot_3(), this.getSpell_slot_4(), this.getSpell_slot_5(), this.getSpell_slot_6(), this.getSpell_slot_7(),
                 this.getSpell_slot_8(), this.getSpell_slot_9(), this.getMax_spell_slot_1(), this.getMax_spell_slot_2(), this.getMax_spell_slot_3(), this.getMax_spell_slot_4(), this.getMax_spell_slot_5(), this.getMax_spell_slot_6(),
                 this.getMax_spell_slot_7(),this.getMax_spell_slot_8(), this.getMax_spell_slot_9(), this.getMax_ivocations_known());
@@ -85,22 +87,41 @@ public class CharacterDataAccessServer  implements CharacterDAO{
         return jdbcTemplate.update(sql,id);
     }
 
+    @Override
+    public void setCantrips_known(int cantrips) {
+        this.cantrips_known = cantrips_known;
+    }
+
 //    @Override
 //    public int updateCharacter() {
 //        return 0;
 //    }
 
 
+    public int getCantrips_known() {return cantrips_known;}
+
+
     public int getMax_cantrips_known() {
         return max_cantrips_known;
     }
+
+
 
     @Override
     public void setMax_cantrips_known(int cantrips) {
         this.max_cantrips_known = max_cantrips_known;
     }
 
-//    @Override
+    @Override
+    public void setSpells_known(int spells) {
+        this.spells_known = spells_known;
+
+    }
+
+
+    public int getSpells_known(){return spells_known;}
+
+    //    @Override
     public int getMax_spells_known() {
         return max_spells_known;
     }
@@ -305,7 +326,9 @@ public class CharacterDataAccessServer  implements CharacterDAO{
         Integer[] spellSlots = spellMap.get(character.getCharacter_level());
         System.out.println(character.getCharacter_level());
         System.out.println(spellMap);
+        this.setCantrips_known(0);
         this.setMax_cantrips_known(spellSlots[0]);
+        this.setSpells_known(0);
         this.setMax_spells_known(spellSlots[1]);
 
         this.setMax_spell_slot_1(spellSlots[2]);
@@ -432,93 +455,93 @@ public class CharacterDataAccessServer  implements CharacterDAO{
 
 
         } else if (name.equals("Cleric")) {
-            spellMap.put(1, new Integer[]{3,0,2,0,0,0,0,0,0,0,0,0});
-            spellMap.put(2, new Integer[]{3,0,3,0,0,0,0,0,0,0,0,0});
-            spellMap.put(3, new Integer[]{3,0,4,2,0,0,0,0,0,0,0,0});
-            spellMap.put(4, new Integer[]{4,0,4,3,0,0,0,0,0,0,0,0});
-            spellMap.put(5, new Integer[]{4,0,4,3,2,0,0,0,0,0,0,0});
-            spellMap.put(6, new Integer[]{4,0,4,3,3,0,0,0,0,0,0,0});
-            spellMap.put(7, new Integer[]{4,0,4,3,3,1,0,0,0,0,0,0});
-            spellMap.put(8, new Integer[]{4,0,4,3,3,2,0,0,0,0,0,0});
-            spellMap.put(9, new Integer[]{4,0,4,3,3,3,1,0,0,0,0,0});
-            spellMap.put(10, new Integer[]{5,0,4,3,3,3,2,0,0,0,0,0});
-            spellMap.put(11, new Integer[]{5,0,4,3,3,3,2,1,0,0,0,0});
-            spellMap.put(12, new Integer[]{5,0,4,3,3,3,2,1,0,0,0,0});
-            spellMap.put(13, new Integer[]{5,0,4,3,3,3,2,1,1,0,0,0});
-            spellMap.put(14, new Integer[]{5,0,4,3,3,3,2,1,1,0,0,0});
-            spellMap.put(15, new Integer[]{5,0,4,3,3,3,2,1,1,1,0,0});
-            spellMap.put(16, new Integer[]{5,0,4,3,3,3,2,1,1,1,0,0});
-            spellMap.put(17, new Integer[]{5,0,4,3,3,3,2,1,1,1,1,0});
-            spellMap.put(18, new Integer[]{5,0,4,3,3,3,3,1,1,1,1,0});
-            spellMap.put(19, new Integer[]{5,0,4,3,3,3,3,2,1,1,1,0});
-            spellMap.put(20, new Integer[]{5,0,4,3,3,3,3,2,2,1,1,0});
+            spellMap.put(1, new Integer[]{3,-1,2,0,0,0,0,0,0,0,0,0});
+            spellMap.put(2, new Integer[]{3,-1,3,0,0,0,0,0,0,0,0,0});
+            spellMap.put(3, new Integer[]{3,-1,4,2,0,0,0,0,0,0,0,0});
+            spellMap.put(4, new Integer[]{4,-1,4,3,0,0,0,0,0,0,0,0});
+            spellMap.put(5, new Integer[]{4,-1,4,3,2,0,0,0,0,0,0,0});
+            spellMap.put(6, new Integer[]{4,-1,4,3,3,0,0,0,0,0,0,0});
+            spellMap.put(7, new Integer[]{4,-1,4,3,3,1,0,0,0,0,0,0});
+            spellMap.put(8, new Integer[]{4,-1,4,3,3,2,0,0,0,0,0,0});
+            spellMap.put(9, new Integer[]{4,-1,4,3,3,3,1,0,0,0,0,0});
+            spellMap.put(10, new Integer[]{5,-1,4,3,3,3,2,0,0,0,0,0});
+            spellMap.put(11, new Integer[]{5,-1,4,3,3,3,2,1,0,0,0,0});
+            spellMap.put(12, new Integer[]{5,-1,4,3,3,3,2,1,0,0,0,0});
+            spellMap.put(13, new Integer[]{5,-1,4,3,3,3,2,1,1,0,0,0});
+            spellMap.put(14, new Integer[]{5,-1,4,3,3,3,2,1,1,0,0,0});
+            spellMap.put(15, new Integer[]{5,-1,4,3,3,3,2,1,1,1,0,0});
+            spellMap.put(16, new Integer[]{5,-1,4,3,3,3,2,1,1,1,0,0});
+            spellMap.put(17, new Integer[]{5,-1,4,3,3,3,2,1,1,1,1,0});
+            spellMap.put(18, new Integer[]{5,-1,4,3,3,3,3,1,1,1,1,0});
+            spellMap.put(19, new Integer[]{5,-1,4,3,3,3,3,2,1,1,1,0});
+            spellMap.put(20, new Integer[]{5,-1,4,3,3,3,3,2,2,1,1,0});
 
 
         } else if (name.equals("Druid")) {
-            spellMap.put(1, new Integer[]{2,0,2,0,0,0,0,0,0,0,0,0});
-            spellMap.put(2, new Integer[]{2,0,3,0,0,0,0,0,0,0,0,0});
-            spellMap.put(3, new Integer[]{2,0,4,2,0,0,0,0,0,0,0,0});
-            spellMap.put(4, new Integer[]{3,0,4,3,0,0,0,0,0,0,0,0});
-            spellMap.put(5, new Integer[]{3,0,4,3,2,0,0,0,0,0,0,0});
-            spellMap.put(6, new Integer[]{3,0,4,3,3,0,0,0,0,0,0,0});
-            spellMap.put(7, new Integer[]{3,0,4,3,3,1,0,0,0,0,0,0});
-            spellMap.put(8, new Integer[]{3,0,4,3,3,2,0,0,0,0,0,0});
-            spellMap.put(9, new Integer[]{3,0,4,3,3,3,1,0,0,0,0,0});
-            spellMap.put(10, new Integer[]{4,0,4,3,3,3,2,0,0,0,0,0});
-            spellMap.put(11, new Integer[]{4,0,4,3,3,3,2,1,0,0,0,0});
-            spellMap.put(12, new Integer[]{4,0,4,3,3,3,2,1,0,0,0,0});
-            spellMap.put(13, new Integer[]{4,0,4,3,3,3,2,1,1,0,0,0});
-            spellMap.put(14, new Integer[]{4,0,4,3,3,3,2,1,1,0,0,0});
-            spellMap.put(15, new Integer[]{4,0,4,3,3,3,2,1,1,1,0,0});
-            spellMap.put(16, new Integer[]{4,0,4,3,3,3,2,1,1,1,0,0});
-            spellMap.put(17, new Integer[]{4,0,4,3,3,3,3,1,1,1,1,0});
-            spellMap.put(18, new Integer[]{4,0,4,3,3,3,3,1,1,1,1,0});
-            spellMap.put(19, new Integer[]{4,0,4,3,3,3,3,2,1,1,1,0});
-            spellMap.put(20, new Integer[]{4,0,4,3,3,3,3,2,2,1,1,0});
+            spellMap.put(1, new Integer[]{2,-1,2,0,0,0,0,0,0,0,0,0});
+            spellMap.put(2, new Integer[]{2,-1,3,0,0,0,0,0,0,0,0,0});
+            spellMap.put(3, new Integer[]{2,-1,4,2,0,0,0,0,0,0,0,0});
+            spellMap.put(4, new Integer[]{3,-1,4,3,0,0,0,0,0,0,0,0});
+            spellMap.put(5, new Integer[]{3,-1,4,3,2,0,0,0,0,0,0,0});
+            spellMap.put(6, new Integer[]{3,-1,4,3,3,0,0,0,0,0,0,0});
+            spellMap.put(7, new Integer[]{3,-1,4,3,3,1,0,0,0,0,0,0});
+            spellMap.put(8, new Integer[]{3,-1,4,3,3,2,0,0,0,0,0,0});
+            spellMap.put(9, new Integer[]{3,-1,4,3,3,3,1,0,0,0,0,0});
+            spellMap.put(10, new Integer[]{4,-1,4,3,3,3,2,0,0,0,0,0});
+            spellMap.put(11, new Integer[]{4,-1,4,3,3,3,2,1,0,0,0,0});
+            spellMap.put(12, new Integer[]{4,-1,4,3,3,3,2,1,0,0,0,0});
+            spellMap.put(13, new Integer[]{4,-1,4,3,3,3,2,1,1,0,0,0});
+            spellMap.put(14, new Integer[]{4,-1,4,3,3,3,2,1,1,0,0,0});
+            spellMap.put(15, new Integer[]{4,-1,4,3,3,3,2,1,1,1,0,0});
+            spellMap.put(16, new Integer[]{4,-1,4,3,3,3,2,1,1,1,0,0});
+            spellMap.put(17, new Integer[]{4,-1,4,3,3,3,3,1,1,1,1,0});
+            spellMap.put(18, new Integer[]{4,-1,4,3,3,3,3,1,1,1,1,0});
+            spellMap.put(19, new Integer[]{4,-1,4,3,3,3,3,2,1,1,1,0});
+            spellMap.put(20, new Integer[]{4,-1,4,3,3,3,3,2,2,1,1,0});
 
         } else if (name.equals("Paladin")) {
-            spellMap.put(1, new Integer[]{0,0,0,0,0,0,0,0,0,0,0,0});
-            spellMap.put(2, new Integer[]{0,0,2,0,0,0,0,0,0,0,0,0});
-            spellMap.put(3, new Integer[]{0,0,3,0,0,0,0,0,0,0,0,0});
-            spellMap.put(4, new Integer[]{0,0,3,0,0,0,0,0,0,0,0,0});
-            spellMap.put(5, new Integer[]{0,0,4,2,0,0,0,0,0,0,0,0});
-            spellMap.put(6, new Integer[]{0,0,4,2,0,0,0,0,0,0,0,0});
-            spellMap.put(7, new Integer[]{0,0,4,3,0,0,0,0,0,0,0,0});
-            spellMap.put(8, new Integer[]{0,0,4,3,0,0,0,0,0,0,0,0});
-            spellMap.put(9, new Integer[]{0,0,4,3,2,0,0,0,0,0,0,0});
-            spellMap.put(10, new Integer[]{0,0,4,3,2,0,0,0,0,0,0,0});
-            spellMap.put(11, new Integer[]{0,0,4,3,3,0,0,0,0,0,0,0});
-            spellMap.put(12, new Integer[]{0,0,4,3,3,0,0,0,0,0,0,0});
-            spellMap.put(13, new Integer[]{0,0,4,3,3,1,0,0,0,0,0,0});
-            spellMap.put(14, new Integer[]{0,0,4,3,3,1,0,0,0,0,0,0});
-            spellMap.put(15, new Integer[]{0,0,4,3,3,2,0,0,0,0,0,0});
-            spellMap.put(16, new Integer[]{0,0,4,3,3,2,0,0,0,0,0,0});
-            spellMap.put(17, new Integer[]{0,0,4,3,3,3,1,0,0,0,0,0});
-            spellMap.put(18, new Integer[]{0,0,4,3,3,3,1,0,0,0,0,0});
-            spellMap.put(19, new Integer[]{0,0,4,3,3,3,2,0,0,0,0,0});
-            spellMap.put(20, new Integer[]{0,0,4,3,3,3,2,0,0,0,0,0});
+            spellMap.put(1, new Integer[]{0,-1,0,0,0,0,0,0,0,0,0,0});
+            spellMap.put(2, new Integer[]{0,-1,2,0,0,0,0,0,0,0,0,0});
+            spellMap.put(3, new Integer[]{0,-1,3,0,0,0,0,0,0,0,0,0});
+            spellMap.put(4, new Integer[]{0,-1,3,0,0,0,0,0,0,0,0,0});
+            spellMap.put(5, new Integer[]{0,-1,4,2,0,0,0,0,0,0,0,0});
+            spellMap.put(6, new Integer[]{0,-1,4,2,0,0,0,0,0,0,0,0});
+            spellMap.put(7, new Integer[]{0,-1,4,3,0,0,0,0,0,0,0,0});
+            spellMap.put(8, new Integer[]{0,-1,4,3,0,0,0,0,0,0,0,0});
+            spellMap.put(9, new Integer[]{0,-1,4,3,2,0,0,0,0,0,0,0});
+            spellMap.put(10, new Integer[]{0,-1,4,3,2,0,0,0,0,0,0,0});
+            spellMap.put(11, new Integer[]{0,-1,4,3,3,0,0,0,0,0,0,0});
+            spellMap.put(12, new Integer[]{0,-1,4,3,3,0,0,0,0,0,0,0});
+            spellMap.put(13, new Integer[]{0,-1,4,3,3,1,0,0,0,0,0,0});
+            spellMap.put(14, new Integer[]{0,-1,4,3,3,1,0,0,0,0,0,0});
+            spellMap.put(15, new Integer[]{0,-1,4,3,3,2,0,0,0,0,0,0});
+            spellMap.put(16, new Integer[]{0,-1,4,3,3,2,0,0,0,0,0,0});
+            spellMap.put(17, new Integer[]{0,-1,4,3,3,3,1,0,0,0,0,0});
+            spellMap.put(18, new Integer[]{0,-1,4,3,3,3,1,0,0,0,0,0});
+            spellMap.put(19, new Integer[]{0,-1,4,3,3,3,2,0,0,0,0,0});
+            spellMap.put(20, new Integer[]{0,-1,4,3,3,3,2,0,0,0,0,0});
 
         } else if (name.equals("Wizard")) {
-            spellMap.put(1, new Integer[]{3,0,2,0,0,0,0,0,0,0,0,0});
-            spellMap.put(2, new Integer[]{3,0,3,0,0,0,0,0,0,0,0,0});
-            spellMap.put(3, new Integer[]{3,0,4,2,0,0,0,0,0,0,0,0});
-            spellMap.put(4, new Integer[]{4,0,4,3,0,0,0,0,0,0,0,0});
-            spellMap.put(5, new Integer[]{4,0,4,3,2,0,0,0,0,0,0,0});
-            spellMap.put(6, new Integer[]{4,0,4,3,3,0,0,0,0,0,0,0});
-            spellMap.put(7, new Integer[]{4,0,4,3,3,1,0,0,0,0,0,0});
-            spellMap.put(8, new Integer[]{4,0,4,3,3,2,0,0,0,0,0,0});
-            spellMap.put(9, new Integer[]{4,0,4,3,3,3,1,0,0,0,0,0});
-            spellMap.put(10, new Integer[]{5,0,4,3,3,3,2,0,0,0,0,0});
-            spellMap.put(11, new Integer[]{5,0,4,3,3,3,2,1,0,0,0,0});
-            spellMap.put(12, new Integer[]{5,0,4,3,3,3,2,1,0,0,0,0});
-            spellMap.put(13, new Integer[]{5,0,4,3,3,3,2,1,1,0,0,0});
-            spellMap.put(14, new Integer[]{5,0,4,3,3,3,2,1,1,0,0,0});
-            spellMap.put(15, new Integer[]{5,0,4,3,3,3,2,1,1,1,0,0});
-            spellMap.put(16, new Integer[]{5,0,4,3,3,3,2,1,1,1,0,0});
-            spellMap.put(17, new Integer[]{5,0,4,3,3,3,2,1,1,1,0,0});
-            spellMap.put(18, new Integer[]{5,0,4,3,3,3,3,1,1,1,1,0});
-            spellMap.put(19, new Integer[]{5,0,4,3,3,3,3,2,1,1,1,0});
-            spellMap.put(20, new Integer[]{5,0,4,3,3,3,3,2,2,1,1,0});
+            spellMap.put(1, new Integer[]{3,-1,2,0,0,0,0,0,0,0,0,0});
+            spellMap.put(2, new Integer[]{3,-1,3,0,0,0,0,0,0,0,0,0});
+            spellMap.put(3, new Integer[]{3,-1,4,2,0,0,0,0,0,0,0,0});
+            spellMap.put(4, new Integer[]{4,-1,4,3,0,0,0,0,0,0,0,0});
+            spellMap.put(5, new Integer[]{4,-1,4,3,2,0,0,0,0,0,0,0});
+            spellMap.put(6, new Integer[]{4,-1,4,3,3,0,0,0,0,0,0,0});
+            spellMap.put(7, new Integer[]{4,-1,4,3,3,1,0,0,0,0,0,0});
+            spellMap.put(8, new Integer[]{4,-1,4,3,3,2,0,0,0,0,0,0});
+            spellMap.put(9, new Integer[]{4,-1,4,3,3,3,1,0,0,0,0,0});
+            spellMap.put(10, new Integer[]{5,-1,4,3,3,3,2,0,0,0,0,0});
+            spellMap.put(11, new Integer[]{5,-1,4,3,3,3,2,1,0,0,0,0});
+            spellMap.put(12, new Integer[]{5,-1,4,3,3,3,2,1,0,0,0,0});
+            spellMap.put(13, new Integer[]{5,-1,4,3,3,3,2,1,1,0,0,0});
+            spellMap.put(14, new Integer[]{5,-1,4,3,3,3,2,1,1,0,0,0});
+            spellMap.put(15, new Integer[]{5,-1,4,3,3,3,2,1,1,1,0,0});
+            spellMap.put(16, new Integer[]{5,-1,4,3,3,3,2,1,1,1,0,0});
+            spellMap.put(17, new Integer[]{5,-1,4,3,3,3,2,1,1,1,0,0});
+            spellMap.put(18, new Integer[]{5,-1,4,3,3,3,3,1,1,1,1,0});
+            spellMap.put(19, new Integer[]{5,-1,4,3,3,3,3,2,1,1,1,0});
+            spellMap.put(20, new Integer[]{5,-1,4,3,3,3,3,2,2,1,1,0});
 
         } else {
             System.out.println("This is the problem");
