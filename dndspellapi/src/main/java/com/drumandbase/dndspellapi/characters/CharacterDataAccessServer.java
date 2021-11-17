@@ -98,10 +98,67 @@ public class CharacterDataAccessServer  implements CharacterDAO{
         this.cantrips_known = cantrips_known;
     }
 
-//    @Override
-//    public int updateCharacter() {
-//        return 0;
-//    }
+    @Override
+    public int updateCharacter(Character character) {
+        String sql = """
+            UPDATE characters SET 
+            race_id =?, 
+            class_id=?, 
+            character_level =?, 
+            name =?, 
+            max_cantrips_known=?, 
+            max_spells_known =?,      
+            spell_slot_1 =?, 
+            spell_slot_2 =?, 
+            spell_slot_3 =?, 
+            spell_slot_4 =?, 
+            spell_slot_5 =?, 
+            spell_slot_6=?,
+            spell_slot_7 =?, 
+            spell_slot_8 =?, 
+            spell_slot_9 =? ,
+            max_spell_slot_1=?,
+            max_spell_slot_2=?, 
+            max_spell_slot_3=? , 
+            max_spell_slot_4 =?, 
+            max_spell_slot_5 =? , 
+            max_spell_slot_6= ?, 
+            max_spell_slot_7 =? , 
+            max_spell_slot_8 =? , 
+            max_spell_slot_9 =?, 
+            max_ivocations_known=? 
+            WHERE id=?;
+            """;
+        return jdbcTemplate.update(sql,
+                character.getRace_id(),
+                character.getClass_id(),
+                character.getCharacter_level(),
+                character.getName(),
+                character.getMax_cantrips_known(),
+                character.getMax_spells_known(),
+                character.getSpell_slot_1(),
+                character.getSpell_slot_2(),
+                character.getSpell_slot_3(),
+                character.getSpell_slot_4(),
+                character.getSpell_slot_5(),
+                character.getSpell_slot_6(),
+                character.getSpell_slot_7(),
+                character.getSpell_slot_8(),
+                character.getSpell_slot_9(),
+                character.getMax_spell_slot_1(),
+                character.getMax_spell_slot_2(),
+                character.getMax_spell_slot_3(),
+                character.getMax_spell_slot_4(),
+                character.getMax_spell_slot_5(),
+                character.getMax_spell_slot_6(),
+                character.getMax_spell_slot_7(),
+                character.getMax_spell_slot_8(),
+                character.getMax_spell_slot_9(),
+                character.getMax_ivocations_known(),
+                character.getId()
+        );
+
+    }
 
 
     public int getCantrips_known() {return cantrips_known;}
