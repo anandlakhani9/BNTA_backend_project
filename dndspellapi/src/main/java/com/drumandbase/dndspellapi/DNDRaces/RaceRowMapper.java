@@ -11,7 +11,6 @@ public class RaceRowMapper implements RowMapper<Race> {
     @Override
     public Race mapRow(ResultSet rs, int rowNum) throws SQLException {
         Race race = new Race(
-                rs.getInt("id"),
                 rs.getString("race_name"),
                 rs.getString("race_description")
         );

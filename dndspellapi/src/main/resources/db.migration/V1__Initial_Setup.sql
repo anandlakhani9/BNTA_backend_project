@@ -95,23 +95,23 @@ INSERT INTO dndclasses (class_name, class_description)
 VALUES ('Ranger','A warrior who uses  martial prowess and nature magic to combat threats on the edges of civilization.');
 
 INSERT INTO dndraces (race_name, race_description)
-VALUES ('Dwarf','');
+VALUES ('Dwarf','Short');
 INSERT INTO dndraces (race_name, race_description)
-VALUES ('Halfling','');
+VALUES ('Halfling','Small');
 INSERT INTO dndraces (race_name, race_description)
-VALUES ('Half-Elf','');
+VALUES ('Half-Elf','Diplomats');
 INSERT INTO dndraces (race_name, race_description)
-VALUES ('Human','');
+VALUES ('Human','Powerful');
 INSERT INTO dndraces (race_name, race_description)
-VALUES ('Elf','');
+VALUES ('Elf','Slender');
 INSERT INTO dndraces (race_name, race_description)
-VALUES ('Dragonborn','');
+VALUES ('Dragonborn','Dragon');
 INSERT INTO dndraces (race_name, race_description)
-VALUES ('Half-Orc','');
+VALUES ('Half-Orc','Strong');
 INSERT INTO dndraces (race_name, race_description)
-VALUES ('Tiefling','');
+VALUES ('Tiefling','Suspicious');
 INSERT INTO dndraces (race_name, race_description)
-VALUES ('Gnome','');
+VALUES ('Gnome','Vibrant');
 
 
 

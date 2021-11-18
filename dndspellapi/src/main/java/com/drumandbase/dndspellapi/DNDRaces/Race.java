@@ -8,7 +8,7 @@ public class Race{
     private String race_description;
 
 
-    public Race(int id, String race_name, String race_description) {
+    public Race(String race_name, String race_description) {
         this.id = id;
         this.race_name = race_name;
         this.race_description = race_description;
