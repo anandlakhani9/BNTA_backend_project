@@ -66,7 +66,7 @@ public class CharacterSpellsService {
     }*/
 
     public boolean canKnowSpell(String characterClass, Spell spell) {
-        System.out.println(characterClass);
+        //System.out.println(characterClass);
         if (characterClass.equals("Sorcerer") && spell.getCanSorcerer()) {
             return true;
         } else if (characterClass.equals("Wizard") && spell.getCanWizard()) {
@@ -352,9 +352,9 @@ public class CharacterSpellsService {
 
     private boolean isSpellAlreadyInBook(long id, Spell spell){
         List<CharacterSpells> spellbook = csDAO.selectAllCharacterSpellsByCharacterID(id);
-        System.out.println(spellbook.toArray().length);
+        //System.out.println(spellbook.toArray().length);
         for (CharacterSpells someSpell : spellbook) {
-            System.out.println(someSpell);
+            //System.out.println(someSpell);
             if (someSpell.getSpellID() == spell.getId()) {
                 System.out.println("found");
                 return true;
@@ -365,11 +365,17 @@ public class CharacterSpellsService {
     }
 
     private  void addCanTrip(CharacterSpells cs, Character character, Spell spell){
-        if(!isSpellAlreadyInBook(character.getId(), spell) && spell.getId() == 0){
-            csDAO.insertSpell(cs);
-            character.setCantrips_known(character.getCantrips_known() + 1);
-            //need to update character db, method needs to be defined first
-            characterDAO.updateCharacter(character);
+        System.out.println(isSpellAlreadyInBook(character.getId(), spell));
+        System.out.println(spell.getSpellLevel()>0);
+        if(!isSpellAlreadyInBook(character.getId(), spell) ){
+            if(spell.getSpellLevel() == 0){
+                csDAO.insertSpell(cs);
+                if(cs.getSpellIsKnown()){
+                    character.setCantrips_known(character.getCantrips_known() + 1);
+                    //need to update character db, method needs to be defined first
+                    characterDAO.updateCharacter(character);
+                }
+            }
         }
         else {
             throw new IllegalStateException("spell with this id is already in spellbook");
@@ -392,11 +398,18 @@ public class CharacterSpellsService {
     }
 
     private  void addSpell(CharacterSpells cs, Character character, Spell spell){
-        if(!isSpellAlreadyInBook(character.getId(), spell) && spell.getId() > 0){
-            csDAO.insertSpell(cs);
-            character.setSpells_known(character.getSpells_known() + 1);
-            //need to update character db, method needs to be defined first
-            characterDAO.updateCharacter(character);
+        System.out.println(isSpellAlreadyInBook(character.getId(), spell));
+        System.out.println(spell.getSpellLevel()>0);
+        if(!isSpellAlreadyInBook(character.getId(), spell)){
+            if (spell.getSpellLevel() >0){
+                csDAO.insertSpell(cs);
+                System.out.println("added");
+                if(cs.getSpellIsKnown()){
+                    character.setSpells_known(character.getSpells_known() + 1);
+                    //need to update character db, method needs to be defined first
+                    characterDAO.updateCharacter(character);
+                }
+            }
         }
         else {
             throw new IllegalStateException("spell with this id is already in spellbook");
