@@ -1,1 +1,2 @@
-COPY spells FROM 'H://Google Drive/BNTA/BackendProject/BNTA_backend_project/dndspellapi/src/main/resources/db.migration/Spell_data2.csv' DELIMITER '|';
+/* CHANGE FILE PATH TO MATCH PERSONAL FILE PATH*/
+COPY spells FROM '/Users/roset/Documents/BackEndProject/BNTA_backend_project/dndspellapi/src/main/resources/db.migration/Spell_data2.csv' DELIMITER '|';

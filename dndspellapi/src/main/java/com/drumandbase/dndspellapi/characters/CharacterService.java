@@ -37,16 +37,99 @@ public class CharacterService{
             throw new NullPointerException("Must contain valid variables");
         }
     }
-
-//    public void updateCharacter(/*TODO: */) {
-//        Character character = getCharacter(id)
-//                .orElseThrow(() ->
-//                        new ResourceNotFound("Character with this id: " + id + " does not exist")
-//                );
-//        /*if (*//*TODO: this is going to be terrible: every single spell slot*//*){
-//            *//*whichever thing they're updating*//*
-//        }*/
-//    }
+    
+    public void updateCharacter(Long id, Integer race_id, Integer  class_id ,Integer character_level, String name, Integer cantrips_known, Integer max_cantrips_known, Integer spells_known,
+                                        Integer max_spells_known, Integer spell_slot_1, Integer spell_slot_2, Integer spell_slot_3, Integer spell_slot_4, Integer spell_slot_5, Integer spell_slot_6,
+                                        Integer spell_slot_7, Integer spell_slot_8, Integer spell_slot_9, Integer max_spell_slot_1, Integer max_spell_slot_2, Integer max_spell_slot_3,
+                                        Integer max_spell_slot_4, Integer max_spell_slot_5, Integer max_spell_slot_6, Integer max_spell_slot_7, Integer max_spell_slot_8, Integer max_spell_slot_9,
+                                        Integer max_ivocations_known) {
+        Character character = getCharacter(id)
+                .orElseThrow(() ->
+                        new ResourceNotFound("Character with this id: " + id + " does not exist")
+                );
+        if (race_id != null) {
+            character.setRace_id(race_id);
+        }
+        if (class_id != null) {
+            character.setClass_id(class_id);
+        }
+        if (character_level != null) {
+            character.setCharacter_level(character_level);
+        }
+        if (name != null && name.length() > 0) {
+            character.setName(name);
+        }
+        if (cantrips_known != null) {
+            character.setCantrips_known(cantrips_known);
+        }
+        if (max_cantrips_known != null) {
+            character.setMax_cantrips_known(max_cantrips_known);
+        }
+        if (spells_known != null) {
+            character.setSpells_known(spells_known);
+        }
+        if (max_spells_known != null) {
+            character.setMax_spells_known(max_spells_known);
+        }
+        if (spell_slot_1 != null) {
+            character.setSpell_slot_1(spell_slot_1);
+        }
+        if (spell_slot_2 != null) {
+            character.setSpell_slot_2(spell_slot_2);
+        }
+        if (spell_slot_3 != null) {
+            character.setSpell_slot_3(spell_slot_3);
+        }
+        if (spell_slot_4 != null) {
+            character.setSpell_slot_4(spell_slot_4);
+        }
+        if (spell_slot_5 != null) {
+            character.setSpell_slot_5(spell_slot_5);
+        }
+        if (spell_slot_6 != null) {
+            character.setSpell_slot_6(spell_slot_6);
+        }
+        if (spell_slot_7 != null) {
+            character.setSpell_slot_7(spell_slot_7);
+        }
+        if (spell_slot_8 != null) {
+            character.setSpell_slot_8(spell_slot_8);
+        }
+        if (spell_slot_9 != null) {
+            character.setSpell_slot_9(spell_slot_9);
+        }
+        if (max_spell_slot_1 != null) {
+            character.setMax_spell_slot_1(max_spell_slot_1);
+        }
+        if (max_spell_slot_2 != null) {
+            character.setMax_spell_slot_2(max_spell_slot_2);
+        }
+        if (max_spell_slot_3 != null) {
+            character.setMax_spell_slot_3(max_spell_slot_3);
+        }
+        if (max_spell_slot_4 != null) {
+            character.setMax_spell_slot_4(max_spell_slot_4);
+        }
+        if (max_spell_slot_5 != null) {
+            character.setMax_spell_slot_5(max_spell_slot_5);
+        }
+        if (max_spell_slot_6 != null) {
+            character.setMax_spell_slot_6(max_spell_slot_6);
+        }
+        if (max_spell_slot_7 != null) {
+            character.setMax_spell_slot_7(max_spell_slot_7);
+        }
+        if (max_spell_slot_8 != null) {
+            character.setMax_spell_slot_8(max_spell_slot_8);
+        }
+        if (max_spell_slot_9 != null) {
+            character.setMax_spell_slot_9(max_spell_slot_9);
+        }
+        if (max_ivocations_known != null) {
+            character.setMax_ivocations_known(max_ivocations_known);
+        }
+        characterDAO.updateCharacter(character);
+    }
 
     public void deleteCharacter(Long id) {
         Character character = getCharacter(id)
