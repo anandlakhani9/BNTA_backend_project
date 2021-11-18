@@ -18,12 +18,12 @@ Tuesday Morning -
 
 Tuesday Afternoon - Anand solo coding character_spells package
 
-Wednesday Morning - Anand continued solo coding character_spells package
+Wednesday Morning - Anand continued solo coding character_spells package, Oliver continued solo finishing GET by name, GET by id, PUT, DELETE 
 
-Wednesday Afternoon -
+Wednesday Afternoon - Oliver solo Unit Testing
 
 
-## SET-UP
+##SET-UP
 
 FIRST THING YOU MUST DO: CHANGE V2_INSERT_SPELLS IN RESOURCES/DB.MIGRATION TO DIRECT TO WHERE SPELL_DATA2.CSV DIRRECTS IN YOUR LOCAL FOLDER DO THIS BY RIGHT CLICKING ON DPELL_DATA2.CSV AND COPYING ABSOLUTE FILE PATH.
 
