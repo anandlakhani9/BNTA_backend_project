@@ -106,7 +106,9 @@ public class CharacterDataAccessServer  implements CharacterDAO{
             class_id=?, 
             character_level =?, 
             name =?, 
-            max_cantrips_known=?, 
+            cantrips_known=?,
+            max_cantrips_known=?,
+            spells_known=?, 
             max_spells_known =?,      
             spell_slot_1 =?, 
             spell_slot_2 =?, 
@@ -134,7 +136,9 @@ public class CharacterDataAccessServer  implements CharacterDAO{
                 character.getClass_id(),
                 character.getCharacter_level(),
                 character.getName(),
+                character.getCantrips_known(),
                 character.getMax_cantrips_known(),
+                character.getSpells_known(),
                 character.getMax_spells_known(),
                 character.getSpell_slot_1(),
                 character.getSpell_slot_2(),
@@ -171,12 +175,12 @@ public class CharacterDataAccessServer  implements CharacterDAO{
 
 
     @Override
-    public void setMax_cantrips_known(int cantrips) {
+    public void setMax_cantrips_known(int max_cantrips_known) {
         this.max_cantrips_known = max_cantrips_known;
     }
 
     @Override
-    public void setSpells_known(int spells) {
+    public void setSpells_known(int spells_known) {
         this.spells_known = spells_known;
 
     }
@@ -387,8 +391,7 @@ public class CharacterDataAccessServer  implements CharacterDAO{
     public void putSpellSlots(Character character){
         createSpellSlotHashMap(character);
         Integer[] spellSlots = spellMap.get(character.getCharacter_level());
-        System.out.println(character.getCharacter_level());
-        System.out.println(spellMap);
+
         this.setCantrips_known(0);
         this.setMax_cantrips_known(spellSlots[0]);
         this.setSpells_known(0);
