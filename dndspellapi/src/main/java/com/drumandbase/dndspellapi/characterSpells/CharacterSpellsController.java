@@ -22,7 +22,12 @@ public class CharacterSpellsController {
 
     @PostMapping
     public void addCharacterSpell(@RequestBody CharacterSpells cs){
-        csService.addSpell(cs);
+        csService.addSpell4(cs);
     }
 
+    @DeleteMapping("{id}")
+    public void deleteCharacterSpell(@PathVariable("id") long id){
+        csService.deleteSpell(id);
+
+    }
 }
