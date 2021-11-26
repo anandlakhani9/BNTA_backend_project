@@ -23,9 +23,9 @@ Wednesday Morning - Anand continued solo coding character_spells package, Oliver
 Wednesday Afternoon - Oliver solo Unit Testing
 
 
-##SET-UP
+## SET-UP
 
-FIRST THING YOU MUST DO: CHANGE V2_INSERT_SPELLS IN RESOURCES/DB.MIGRATION TO DIRECT TO WHERE SPELL_DATA2.CSV DIRRECTS IN YOUR LOCAL FOLDER DO THIS BY RIGHT CLICKING ON DPELL_DATA2.CSV AND COPYING ABSOLUTE FILE PATH.
+FIRST THING YOU MUST DO: Change V2_Insert_Spells in resources/db.migration to direct to where spell_data2.csv directs in your local folder do this by right clicking on dpell_data2.csv and copying absolute file path.
 
 ## Our API
 ### Schools
