@@ -14,18 +14,11 @@ Monday Morning - Unit Test for SchoolsDataAccess Service Completed(pair coded - 
 
 Mornday Afternoon - Null pointer exceptions added (mob coded - Rose, Sabi, Anand and Oliver) as well as the Spells(pair coded - Anande/Oliver) and Character classes (pair coded - Sabi/Rose).
 
-Tuesday Morning - 
-
-Tuesday Afternoon - Anand solo coding character_spells package
-
-Wednesday Morning - Anand continued solo coding character_spells package, Oliver continued solo finishing GET by name, GET by id, PUT, DELETE 
-
-Wednesday Afternoon - Oliver solo Unit Testing
-
 
 ## SET-UP
 
 FIRST THING YOU MUST DO: Change V2_Insert_Spells in resources/db.migration to direct to where spell_data2.csv directs in your local folder do this by right clicking on dpell_data2.csv and copying absolute file path.
+=======
 
 ## Our API
 ### Schools
