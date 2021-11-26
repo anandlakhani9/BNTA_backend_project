@@ -39,8 +39,6 @@ class SchoolDataAccessServiceTest {
         jdbcTemplate.execute("INSERT INTO schools (school_name, school_description) VALUES ('Evocation', 'jre;iogfj');");
     }
 
-
-
     //@Sql({"classpath:test.sql"})
     @Test
     void selectAllSchools(){
@@ -155,10 +153,10 @@ class SchoolDataAccessServiceTest {
                 "Anand",
                 "fghdkjafhd;hf");
         int expected = 1;
-        List<School> actualDB = List.of(new School(1,
+        List<School> expectedDB = List.of(new School(1,
                 "Anand",
                 "fghdkjafhd;hf" ));
-        List<School> expectedDB = underTest.selectAllSchools();
+        List<School> actualDB = underTest.selectAllSchools();
         //then
         assertThat(actual).isEqualTo(expected);
         assertThat(actualDB).isEqualTo(expectedDB);
